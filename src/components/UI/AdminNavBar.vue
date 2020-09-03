@@ -16,35 +16,14 @@
           <b-nav-item-dropdown right>
             <!-- Using 'button-content' slot -->
             <template v-slot:button-content>
-              <em>Admin</em>
+              <em>Posts</em>
             </template>
-            <b-dropdown-item href="/admin">Sign in</b-dropdown-item>
+            <b-dropdown-item href="#">New Post</b-dropdown-item>
+            <b-dropdown-item href="#">Edit Post</b-dropdown-item>
+            <!-- <b-dropdown-item href="#">New Post</b-dropdown-item> -->
           </b-nav-item-dropdown>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
   </div>
 </template>
-
-<script>
-export default {
-  data: function () {
-    return {
-      isOpen: false,
-    };
-  },
-};
-</script>
-
-<style scoped>
-#navbar-title {
-  font-size: 3rem;
-  /* color: black; */
-}
-.navbar-burger {
-  font-size: 3rem;
-}
-.navbar-item {
-  font-size: 1.5rem;
-}
-</style>

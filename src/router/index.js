@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Admin from '../views/Admin.vue'
 import Dashboard from "../views/Dashboard.vue"
 import EditPost from "../views/EditPost.vue"
 import NewPost from "../views/NewPost.vue"
@@ -35,7 +35,12 @@ const routes = [{
     component: function () {
       return import( /* webpackChunkName: "about" */ '../views/About.vue')
     }
-  }
+  },
+  {
+    path: '/admin',
+    name: 'admin',
+    component: Admin
+  },
 ]
 
 const router = new VueRouter({
