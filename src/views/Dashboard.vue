@@ -1,21 +1,26 @@
 <template>
   <div>
-    <h3>Dashboard</h3>
+    <div class="dashboardHeader">
+      <h2>Dashboard</h2>
+    </div>
+
     <!-- To clear any confusions
       -- v-for="Post of posts"                    --
       -- posts is the data() posts                --
     -- Post is whats being passed down as props-->
-    <Card
-      v-for="Post of posts"
-      :key="Post.id"
-      :post_id="Post.post_id"
-      :title="Post.title"
-      :subtitle="Post.subtitle"
-      :thumbnail="Post.thumbnail"
-      :post_image="Post.post_image"
-      :link="Post.link"
-      :description="Post.description"
-    />
+    <div class="cards">
+      <Card
+        v-for="Post of posts"
+        :key="Post.id"
+        :post_id="Post.post_id"
+        :title="Post.title"
+        :subtitle="Post.subtitle"
+        :thumbnail="Post.thumbnail"
+        :post_image="Post.post_image"
+        :link="Post.link"
+        :description="Post.description"
+      />
+    </div>
   </div>
 </template>
 
@@ -57,5 +62,27 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.dashboardHeader {
+  background-image: url("/img/UI/coffee.png");
+  position: relative;
+  box-sizing: border-box;
+  background-position: center;
+  height: 200px;
+  margin-bottom: 30px;
+}
+.dashboardHeader h2 {
+  color: white;
+}
+.cards {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+@media only screen and (max-width: 775px) {
+  .cards {
+    display: inline-flex;
+    flex-wrap: wrap;
+  }
+}
 </style>
