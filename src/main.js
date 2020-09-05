@@ -9,6 +9,20 @@ import {
 } from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import {
+  library
+} from '@fortawesome/fontawesome-svg-core'
+import {
+  faEnvelope,
+  faLock
+} from '@fortawesome/free-solid-svg-icons'
+import {
+  FontAwesomeIcon
+} from '@fortawesome/vue-fontawesome'
+
+library.add(faEnvelope, faLock)
+
+Vue.component('font-awesome-icon', FontAwesomeIcon)
 // Install BootstrapVue
 Vue.use(BootstrapVue)
 // Optionally install the BootstrapVue icon components plugin

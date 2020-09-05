@@ -5,6 +5,7 @@ import Dashboard from "../views/Dashboard.vue"
 import EditPost from "../views/EditPost.vue"
 import NewPost from "../views/NewPost.vue"
 import ViewPost from "../views/ViewPost.vue"
+import Login from "../views/Login.vue"
 Vue.use(VueRouter)
 const routes = [{
     path: '/',
@@ -35,6 +36,11 @@ const routes = [{
     component: function () {
       return import( /* webpackChunkName: "about" */ '../views/About.vue')
     }
+  },
+  {
+    path: "/login",
+    name: "login",
+    component: Login
   },
   {
     path: '/admin',

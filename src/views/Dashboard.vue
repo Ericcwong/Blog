@@ -68,6 +68,7 @@ export default {
   position: relative;
   box-sizing: border-box;
   background-position: center;
+  background-size: cover;
   height: 200px;
   margin-bottom: 30px;
 }
