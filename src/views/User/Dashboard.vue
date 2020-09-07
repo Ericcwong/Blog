@@ -25,10 +25,12 @@
 </template>
 
 <script>
-import db from "../components/firebase/firebaseInit";
-import Card from "../components/UI/cards/Card.vue";
+import db from "../../components/firebase/firebaseInit";
+import Card from "../../components/UI/cards/Card.vue";
 export default {
   name: "Dashboard",
+  //Once created() function has been ran, posts:[] will be reactive
+  //The array will be populated
   data() {
     return {
       posts: [],
@@ -37,16 +39,22 @@ export default {
   components: {
     Card,
   },
+  //Created() called synchronously after the instance is created.
+  //This is ran before that mounted and mounted helps put stuff in the dom
   created() {
+    //db calls from the set firebase project's collection posts
     db.collection("posts")
       .get()
+      //Get that data
       .then((request) => {
         request.forEach((response) => {
+          //Then the data is set as request, for each request set it as response
+          // each response is set to data
           console.log(response.data());
           const data = {
             //Firebase's set post ID
             id: response.id,
-            //User created ID
+            //User created ID and data is where the information is called from in firebase
             post_id: response.data().post_id,
             title: response.data().title,
             subtitle: response.data().subtitle,
@@ -55,6 +63,7 @@ export default {
             link: response.data().link,
             description: response.data().description,
           };
+          //Once those are assigned push the data to posts. That is where its pushed to the data() function
           this.posts.push(data);
         });
       });

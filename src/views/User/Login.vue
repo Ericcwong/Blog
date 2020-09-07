@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import { auth } from "../components/firebase/firebaseInit";
+import { auth } from "../../components/firebase/firebaseInit";
 
 export default {
   name: "Login",

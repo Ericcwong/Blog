@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import db from "../components/firebase/firebaseInit";
+import db from "../../components/firebase/firebaseInit";
 export default {
   name: "viewPost",
   created() {
