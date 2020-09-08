@@ -4,6 +4,12 @@
       <h1>Admin Page</h1>
     </div>
     <div class="container">
+      <div class="newPosts">
+        <router-link to="/admin/new-post">
+          <button class="btn btn-primary">New Post</button>
+        </router-link>
+        <!-- <newPost this.post_id="post_id" /> -->
+      </div>
       <div class="table">
         <table v-for="post of posts" :key="post.id">
           <tr>
@@ -34,7 +40,7 @@
 
 <script>
 import db from "../../components/firebase/firebaseInit";
-import Card from "../../components/UI/cards/Card.vue";
+// import newPost from "../../components/UI/Posts/NewPost";
 export default {
   name: "Dashboard",
   //Once created() function has been ran, posts:[] will be reactive
@@ -42,10 +48,11 @@ export default {
   data() {
     return {
       posts: [],
+      post_id: null,
     };
   },
   components: {
-    Card,
+    // newPost,
   },
   //Created() called synchronously after the instance is created.
   //This is ran before that mounted and mounted helps put stuff in the dom
@@ -85,6 +92,7 @@ export default {
           .delete()
           .then(function () {
             console.log("Document Deleted!");
+            window.location.reload();
           })
           .catch((error) => {
             console.log(error);
@@ -106,24 +114,25 @@ export default {
   margin-bottom: 30px;
 }
 .container {
-  display: flex;
+  /* display: flex;
+  justify-content: space-evenly; */
   height: 70vh;
 }
 .dashboardHeader h2 {
   color: white;
 }
-.cards {
+.newPosts {
   display: flex;
-  justify-content: space-evenly;
+  /* justify-content: space-evenly; */
 }
 table tr th {
   border: 1px solid black;
 }
-@media only screen and (max-width: 775px) {
-  .cards {
+/* @media only screen and (max-width: 775px) {
+  .newPosts {
     display: inline-flex;
     flex-wrap: wrap;
   }
-}
+} */
 </style>
 

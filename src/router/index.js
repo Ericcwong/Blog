@@ -4,7 +4,7 @@ import About from "../views/User/About.vue"
 import Admin from '../views/Admin/Admin.vue'
 import Dashboard from "../views/User/Dashboard.vue"
 // import EditPost from "../views/Admin/EditPost.vue"
-// import NewPost from "../views/Admin/NewPost.vue"
+import NewPost from "../views/Admin/NewPost.vue"
 import ViewPost from "../views/User/ViewPost.vue"
 import Login from "../views/User/Login.vue"
 Vue.use(VueRouter)
@@ -18,11 +18,11 @@ const routes = [{
   //   name: 'edit-post',
   //   component: EditPost
   // },
-  // {
-  //   path: '/admin/new-post',
-  //   name: 'new-post',
-  //   component: NewPost
-  // },
+  {
+    path: '/admin/new-post',
+    name: 'new-post',
+    component: NewPost
+  },
   {
     path: '/view-post/:post_id',
     name: 'view-post',
