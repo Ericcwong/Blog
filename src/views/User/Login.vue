@@ -33,7 +33,7 @@ export default {
       auth.signInWithEmailAndPassword(this.email, this.password).then(
         (user) => {
           alert("Welcome back Eric");
-          this.$router.push("/");
+          this.$router.push("/admin");
         },
         (error) => {
           alert(error.message);

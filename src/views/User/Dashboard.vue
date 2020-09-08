@@ -50,7 +50,6 @@ export default {
         request.forEach((response) => {
           //Then the data is set as request, for each request set it as response
           // each response is set to data
-          console.log(response.data());
           const data = {
             //Firebase's set post ID
             id: response.id,
