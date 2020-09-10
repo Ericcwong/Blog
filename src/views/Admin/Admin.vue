@@ -121,8 +121,6 @@ export default {
   margin-bottom: 30px;
 }
 .container {
-  /* display: flex;
-  justify-content: space-evenly; */
   height: 70vh;
 }
 .dashboardHeader h2 {
@@ -130,18 +128,24 @@ export default {
 }
 .newPosts {
   display: flex;
-  /* justify-content: space-evenly; */
 }
-table tr td {
-  border: 1px solid black;
+
+.table,
+thead,
+th,
+tbody,
+tr,
+td {
+  border: 1px solid black !important;
+  vertical-align: middle !important;
 }
 table {
   width: 100%;
   table-layout: fixed;
 }
-tr:nth-of-type(odd) {
+/* tr:nth-of-type(odd) {
   background: #eee;
-}
+} */
 
 @media only screen and (max-width: 775px) {
   table,
@@ -151,21 +155,12 @@ tr:nth-of-type(odd) {
   td,
   tr {
     display: block;
+    border: none;
   }
   thead tr {
     position: absolute;
     top: -9999px;
     left: -9999px;
-  }
-  tr {
-    border: 1px solid #ccc;
-  }
-  td {
-    /* Behave  like a "row" */
-    border: none;
-    border-bottom: 1px solid #eee;
-    position: relative;
-    padding-left: 50%;
   }
 
   td:before {
