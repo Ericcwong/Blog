@@ -12,15 +12,14 @@
           <label for="files">Thumbnail</label>
           <input id="files" type="file" @change="onFileChange" placeholder="Add images" />
         </div>
-        <div v-else>
+        <div class="formButtons" v-else>
           <b-button @click="removeImage">Remove Thumbnail</b-button>
           <b-button @click="addPost" class="btn btn-primary">Add Post!</b-button>
         </div>
-
-        <!-- <input v-model="post_image" type="text" placeholder="post_image" /> -->
       </form>
     </div>
     <div class="previewCard">
+      <h3>Post Preview</h3>
       <Card
         :post_id="Number(this.post_id)"
         :title="this.title"
@@ -91,12 +90,6 @@ export default {
     removeImage(e) {
       this.thumbnail = "";
     },
-    // uploadImage(event) {
-    //   let files = event.target.files;
-    //   let firebaseStorage = storage.ref("posts/" + files.name);
-
-    //   firebaseStorage.put(files)
-    // },
   },
 };
 </script>
@@ -116,6 +109,9 @@ form {
   border-radius: 5px;
   background-color: #f2f2f2;
   padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  width: 100vw;
 }
 input {
   max-width: 100%;
@@ -132,6 +128,10 @@ textarea {
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
+}
+.formButtons {
+  display: flex;
+  justify-content: space-between;
 }
 /* Needs styling for mobile */
 </style>

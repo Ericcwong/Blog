@@ -2,7 +2,7 @@
   <div class="container">
     <div class="loginBox">
       <h3>Login</h3>
-      <form @keydown.enter="login">
+      <form @keydown.enter="login" autocomplete="on">
         <div class="inputField">
           <font-awesome-icon :icon="['fas', 'envelope']" class="icon" />
           <input v-model="email" type="text" id="email" placeholder="Email" />
