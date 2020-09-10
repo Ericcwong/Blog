@@ -8,30 +8,33 @@
         <router-link to="/admin/new-post">
           <button class="btn btn-primary">New Post</button>
         </router-link>
-        <!-- <newPost this.post_id="post_id" /> -->
       </div>
       <div class="table">
         <table v-for="post of posts" :key="post.id">
-          <tr>
-            <td>Title</td>
-            <td>Description</td>
-            <td>View blog</td>
-            <td>Edit blog</td>
-            <td>Delete blog</td>
-          </tr>
-          <tr>
-            <td>{{post.title}}</td>
-            <td>{{post.description}}</td>
-            <td>
-              <router-link :to="{name: 'view-post', params:{post_id: post.post_id  }}">Blog link</router-link>
-            </td>
-            <td>
-              <button @click="editPost" class="btn btn-primary">Edit Post</button>
-            </td>
-            <td>
-              <button @click="deletePost(post.id)" class="btn btn-danger">Delete Post</button>
-            </td>
-          </tr>
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Description</th>
+              <th>View blog</th>
+              <th>Edit blog</th>
+              <th>Delete blog</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{post.title}}</td>
+              <td>{{post.description}}</td>
+              <td>
+                <router-link :to="{name: 'view-post', params:{post_id: post.post_id  }}">Blog link</router-link>
+              </td>
+              <td>
+                <button @click="editPost" class="btn btn-primary">Edit Post</button>
+              </td>
+              <td>
+                <button @click="deletePost(post.id)" class="btn btn-danger">Delete Post</button>
+              </td>
+            </tr>
+          </tbody>
         </table>
       </div>
     </div>
@@ -105,12 +108,16 @@ export default {
 </script>
 <style scoped>
 .home {
+  color: white;
   background-image: url("/img/UI/coffee.png");
   position: relative;
   box-sizing: border-box;
   background-position: center;
   background-size: cover;
   height: 200px;
+  margin-bottom: 30px;
+}
+.newPosts {
   margin-bottom: 30px;
 }
 .container {
@@ -132,12 +139,59 @@ table {
   width: 100%;
   table-layout: fixed;
 }
+tr:nth-of-type(odd) {
+  background: #eee;
+}
 
-/* @media only screen and (max-width: 775px) {
-  .newPosts {
-    display: inline-flex;
-    flex-wrap: wrap;
+@media only screen and (max-width: 775px) {
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: block;
   }
-} */
+  thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+  tr {
+    border: 1px solid #ccc;
+  }
+  td {
+    /* Behave  like a "row" */
+    border: none;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-left: 50%;
+  }
+
+  td:before {
+    /* Now like a table header */
+    /* position: absolute; */
+    /* Top/left values mimic padding */
+    /* left: 6px;
+    width: 45%; */
+    padding-right: 10px;
+    white-space: nowrap;
+  }
+  td:nth-of-type(1):before {
+    content: "Title:";
+  }
+  td:nth-of-type(2):before {
+    content: "Description:";
+  }
+  td:nth-of-type(3):before {
+    content: "View Blog:";
+  }
+  td:nth-of-type(4):before {
+    content: "Edit Blog:";
+  }
+  td:nth-of-type(5):before {
+    content: "Delete Blog:";
+  }
+}
 </style>
 
