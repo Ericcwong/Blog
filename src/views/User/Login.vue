@@ -11,7 +11,8 @@
           <font-awesome-icon :icon="['fas', 'lock']" class="icon" />
           <input v-model="password" type="password" id="password" placeholder="Password" />
         </div>
-        <input type="button" @click="login" class="btn btn-primary" />
+        <!-- <label for="loginBtn">Sign in</label> -->
+        <b-button @click="login" class="btn btn-primary">Sign In</b-button>
       </form>
     </div>
   </div>

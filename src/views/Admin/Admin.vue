@@ -13,24 +13,24 @@
       <div class="table">
         <table v-for="post of posts" :key="post.id">
           <tr>
-            <th>Title</th>
-            <th>Description</th>
-            <th>View blog</th>
-            <th>Edit blog</th>
-            <th>Delete blog</th>
+            <td>Title</td>
+            <td>Description</td>
+            <td>View blog</td>
+            <td>Edit blog</td>
+            <td>Delete blog</td>
           </tr>
           <tr>
-            <th>{{post.title}}</th>
-            <th>{{post.description}}</th>
-            <th>
+            <td>{{post.title}}</td>
+            <td>{{post.description}}</td>
+            <td>
               <router-link :to="{name: 'view-post', params:{post_id: post.post_id  }}">Blog link</router-link>
-            </th>
-            <th>
+            </td>
+            <td>
               <button @click="editPost" class="btn btn-primary">Edit Post</button>
-            </th>
-            <th>
+            </td>
+            <td>
               <button @click="deletePost(post.id)" class="btn btn-danger">Delete Post</button>
-            </th>
+            </td>
           </tr>
         </table>
       </div>
@@ -125,9 +125,14 @@ export default {
   display: flex;
   /* justify-content: space-evenly; */
 }
-table tr th {
+table tr td {
   border: 1px solid black;
 }
+table {
+  width: 100%;
+  table-layout: fixed;
+}
+
 /* @media only screen and (max-width: 775px) {
   .newPosts {
     display: inline-flex;
