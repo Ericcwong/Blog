@@ -25,7 +25,7 @@ export default {
     title: String,
     subtitle: String,
     thumbnail: String,
-    post_image: String,
+    // post_image: Array,
     link: String,
     description: String,
   },
@@ -39,8 +39,8 @@ export default {
   box-shadow: 3px 3px 2px gray;
 }
 .card-img-top {
-  width: 100%;
-  height: 200px;
+  max-width: 100%;
+  max-height: 100%;
   border-bottom: 1px solid lightgray;
 }
 .card-body {

@@ -2,7 +2,7 @@
   <div class="container">
     <div class="loginBox">
       <h3>Login</h3>
-      <form>
+      <form @keydown.enter="login">
         <div class="inputField">
           <font-awesome-icon :icon="['fas', 'envelope']" class="icon" />
           <input v-model="email" type="text" id="email" placeholder="Email" />
@@ -11,7 +11,7 @@
           <font-awesome-icon :icon="['fas', 'lock']" class="icon" />
           <input v-model="password" type="password" id="password" placeholder="Password" />
         </div>
-        <b-button @click="login" class="btn btn-primary">Login</b-button>
+        <input type="button" @click="login" class="btn btn-primary" />
       </form>
     </div>
   </div>

@@ -12,7 +12,7 @@
       <Card
         v-for="Post of posts"
         :key="Post.id"
-        :post_id="Post.post_id"
+        :post_id="Number(Post.post_id)"
         :title="Post.title"
         :subtitle="Post.subtitle"
         :thumbnail="Post.thumbnail"
