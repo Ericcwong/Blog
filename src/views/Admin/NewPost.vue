@@ -7,11 +7,19 @@
         <input v-model="title" type="text" placeholder="Title" />
         <input v-model="subtitle" type="text" placeholder="Sub-Title" />
         <input v-model="link" type="text" placeholder="links" />
+        <label for="upload-pictures" @change="onFileSelected">Upload pictures</label>
+        <input id="upload-pictures" type="file" multiple />
         <textarea v-model="description" type="text" placeholder="Description"></textarea>
-        <div v-if="!thumbnail">
-          <label for="files">Thumbnail</label>
-          <input id="files" type="file" @change="onFileChange" placeholder="Add images" />
-        </div>
+
+        <label for="files">Thumbnail</label>
+        <input
+          v-if="!thumbnail"
+          id="files"
+          type="file"
+          @change="onFileChange"
+          placeholder="Add images"
+        />
+
         <div class="formButtons" v-else>
           <b-button @click="removeImage">Remove Thumbnail</b-button>
           <b-button @click="addPost" class="btn btn-primary">Add Post!</b-button>
@@ -25,7 +33,7 @@
         :title="this.title"
         :subtitle="this.subtitle"
         :thumbnail="this.thumbnail"
-        :post_image="this.post_image"
+        :picutres="this.pictures"
         :link="this.link"
         :description="this.description"
       />
@@ -49,7 +57,7 @@ export default {
       thumbnail: null,
       description: null,
       link: null,
-      post_image: null,
+      pictures: null,
     };
   },
   methods: {
@@ -62,7 +70,7 @@ export default {
           thumbnail: this.thumbnail,
           description: this.description,
           link: this.link,
-          post_image: null,
+          pictures: this.pictures,
         })
         .then((docRef) => {
           this.$router.push("/");
@@ -90,6 +98,9 @@ export default {
     removeImage(e) {
       this.thumbnail = "";
     },
+    onFileSelected(event) {
+      this.pictures = event.target.files;
+    },
   },
 };
 </script>
@@ -98,6 +109,9 @@ export default {
 .newPost {
   display: inline-grid;
   /* flex-direction: inline; */
+}
+label {
+  display: flex;
 }
 form {
   width: 40vw;

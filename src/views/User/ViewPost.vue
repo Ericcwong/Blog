@@ -12,6 +12,7 @@
     <div class="postDescription">
       <a :href="link">Link</a>
       <p>{{description}}</p>
+      <img :src="pictures" alt />
     </div>
   </div>
 </template>
@@ -33,7 +34,7 @@ export default {
       title: null,
       subtitle: null,
       thumbnail: null,
-      post_image: null,
+      pictures: null,
       link: null,
       description: null,
       date: null,
@@ -54,7 +55,7 @@ export default {
             this.title = res.data().title;
             this.subtitle = res.data().subtitle;
             this.thumbnail = res.data().thumbnail;
-            this.post_image = res.data().post_image;
+            this.pictures = res.data().pictures;
             this.link = res.data().link;
             this.description = res.data().description;
             this.date = res.data().date;

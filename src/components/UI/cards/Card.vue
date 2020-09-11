@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <section class="card">
     <div class="card-body">
       <div class="card-header">
         <h5 class="card-title">{{title}}</h5>
@@ -15,7 +15,7 @@
       <router-link :to="{name: 'view-post', params:{post_id: post_id  }}">View Blog</router-link>
       <p>Post # {{post_id}}</p>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -34,9 +34,10 @@ export default {
 
 <style scoped>
 .card {
-  width: 20rem;
+  width: 500px;
   border: 1px solid darkgray;
   box-shadow: 3px 3px 2px gray;
+  margin: 1.5rem;
 }
 .card-img-top {
   max-width: 100%;
