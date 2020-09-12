@@ -8,7 +8,8 @@
         <input v-model="link" type="text" placeholder="links" />
         <label for="upload-pictures" @change="onFileSelected">Upload pictures</label>
         <input id="upload-pictures" type="file" multiple />
-        <textarea v-model="description" type="text" placeholder="Description"></textarea>
+        <textarea v-model="description"  type="text" placeholder="Description" rows="10"
+        cols="600"></textarea>
 
         <label for="files">Thumbnail</label>
         <input
@@ -105,6 +106,7 @@ export default {
 <style scoped>
 .newPost {
   display: inline-grid;
+  margin-right: 30px;
   /* flex-direction: inline; */
 }
 label {
@@ -115,14 +117,15 @@ form {
 }
 .card {
   margin: 0 auto;
+  max-width: 100%
 }
 .container {
   border-radius: 5px;
-  background-color: #f2f2f2;
+  /* background-color: #f2f2f2; */
   padding: 20px;
   display: flex;
   justify-content: space-between;
-  width: 100vw;
+  max-width: 100vw;
 }
 input {
   max-width: 100%;
@@ -144,5 +147,11 @@ textarea {
   display: flex;
   justify-content: space-between;
 }
-/* Needs styling for mobile */
+/* styling for mobile */
+@media screen and (max-width: 950px){
+  .container{
+    display: inline;
+    max-width: 100vw
+  }
+}
 </style>

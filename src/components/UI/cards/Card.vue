@@ -9,8 +9,6 @@
         <img class="card-img-top" :src="thumbnail" alt />
       </router-link>
     </div>
-
-    <p class="card-text">{{description}}</p>
     <div class="card-footer text-muted">
       <router-link :to="{name: 'view-post', params:{title: title  }}">View Blog</router-link>
     </div>
