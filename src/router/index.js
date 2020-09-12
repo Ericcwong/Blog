@@ -24,7 +24,7 @@ const routes = [{
     component: NewPost
   },
   {
-    path: '/view-post/:post_id',
+    path: '/view-post/:title',
     name: 'view-post',
     component: ViewPost
   },

@@ -25,7 +25,7 @@
               <td>{{post.title}}</td>
               <td>{{post.description}}</td>
               <td>
-                <router-link :to="{name: 'view-post', params:{post_id: post.post_id  }}">Blog link</router-link>
+                <router-link :to="{name: 'view-post', params:{title: post.title  }}">Blog link</router-link>
               </td>
               <td>
                 <button @click="editPost" class="btn btn-primary">Edit Post</button>

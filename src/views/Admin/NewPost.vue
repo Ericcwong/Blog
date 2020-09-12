@@ -3,7 +3,6 @@
     <div class="createPost">
       <h3>New Post!</h3>
       <form class="newPost" @keydown.enter="createNewPost">
-        <input v-model="post_id" type="number" placeholder="post id" />
         <input v-model="title" type="text" placeholder="Title" />
         <input v-model="subtitle" type="text" placeholder="Sub-Title" />
         <input v-model="link" type="text" placeholder="links" />
@@ -29,7 +28,6 @@
     <div class="previewCard">
       <h3>Post Preview</h3>
       <Card
-        :post_id="Number(this.post_id)"
         :title="this.title"
         :subtitle="this.subtitle"
         :thumbnail="this.thumbnail"
@@ -62,9 +60,8 @@ export default {
   },
   methods: {
     addPost() {
-      db.collection("posts")
-        .add({
-          post_id: parseInt(this.post_id),
+      db.collection("posts").doc(this.title)
+        .set({
           title: this.title,
           subtitle: this.subtitle,
           thumbnail: this.thumbnail,

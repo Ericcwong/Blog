@@ -6,8 +6,8 @@
     <div class="postSubHeader">
       <h4>{{subtitle}}</h4>
     </div>
-    <div class="postImage">
-      <img :src="thumbnail" alt />
+    <div >
+      <img class="postImage" :src="thumbnail" alt />
     </div>
     <div class="postDescription">
       <a :href="link">Link</a>
@@ -47,11 +47,10 @@ export default {
     //fetchData is calling the specific post_id from firebase that is passed when clicked from dashboard page
     fetchData() {
       db.collection("posts")
-        .where("post_id", "==", this.$route.params.post_id)
+        .where("title", "==", this.$route.params.title)
         .get()
         .then((response) => {
           response.forEach((res) => {
-            this.post_id = res.data().post_id;
             this.title = res.data().title;
             this.subtitle = res.data().subtitle;
             this.thumbnail = res.data().thumbnail;
@@ -72,5 +71,10 @@ export default {
 
 <style scoped>
 .postImage {
+  max-width: 50%;
+  max-height: 50%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
 }
 </style>

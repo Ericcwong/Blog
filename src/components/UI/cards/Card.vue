@@ -5,15 +5,14 @@
         <h5 class="card-title">{{title}}</h5>
         <h6 class="card-subtitle mb-2 text-muted">{{subtitle}}</h6>
       </div>
-      <router-link :to="{name: 'view-post', params:{post_id: post_id  }}">
+      <router-link :to="{name: 'view-post', params:{title: title  }}">
         <img class="card-img-top" :src="thumbnail" alt />
       </router-link>
     </div>
 
     <p class="card-text">{{description}}</p>
     <div class="card-footer text-muted">
-      <router-link :to="{name: 'view-post', params:{post_id: post_id  }}">View Blog</router-link>
-      <p>Post # {{post_id}}</p>
+      <router-link :to="{name: 'view-post', params:{title: title  }}">View Blog</router-link>
     </div>
   </section>
 </template>
@@ -21,7 +20,6 @@
 <script>
 export default {
   props: {
-    post_id: Number,
     title: String,
     subtitle: String,
     thumbnail: String,
