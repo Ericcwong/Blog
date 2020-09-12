@@ -40,8 +40,12 @@ export default {
   margin: 1.5rem;
 }
 .card-img-top {
+  display: block;
   max-width: 100%;
   max-height: 100%;
+  width: auto;
+  height: 360px;
+  /* object-fit: contain; */
   border-bottom: 1px solid lightgray;
 }
 .card-body {
