@@ -41,7 +41,10 @@ const routes = [{
   {
     path: '/admin',
     name: 'admin',
-    component: Admin
+    component: Admin,
+    meta: {
+      requiresAuth: true
+    }
   },
 ]
 
@@ -49,6 +52,15 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  if (to.meta.requiresAuth) {
+    //Needs login
+
+  } else {
+    next();
+  }
 })
 
 export default router

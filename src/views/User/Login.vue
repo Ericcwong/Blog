@@ -32,8 +32,7 @@ export default {
   methods: {
     login(e) {
       auth.signInWithEmailAndPassword(this.email, this.password).then(
-        (user) => {
-          alert("Welcome back Eric");
+        () => {
           this.$router.push("/admin");
         },
         (error) => {

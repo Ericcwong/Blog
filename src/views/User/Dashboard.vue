@@ -10,14 +10,14 @@
     -- Post is whats being passed down as props-->
     <div class="cards">
       <Card
-        v-for="Post of posts"
-        :key="Post.id"
-        :title="Post.title"
-        :subtitle="Post.subtitle"
-        :thumbnail="Post.thumbnail"
-        :post_image="Post.post_image"
-        :link="Post.link"
-        :description="Post.description"
+        v-for="post of posts"
+        :key="post.id"
+        :title="post.title"
+        :subtitle="post.subtitle"
+        :thumbnail="post.thumbnail"
+        :post_image="post.post_image"
+        :link="post.link"
+        :description="post.description"
       />
     </div>
   </div>
@@ -26,46 +26,25 @@
 <script>
 import db from "../../components/firebase/firebaseInit";
 import Card from "../../components/UI/cards/Card.vue";
+import { mapState } from "vuex";
 export default {
   name: "Dashboard",
   //Once created() function has been ran, posts:[] will be reactive
   //The array will be populated
-  data() {
-    return {
-      posts: [],
-    };
-  },
+  // data() {
+  //   return {
+  //     posts: [],
+  //   };
+  // },
   components: {
     Card,
   },
   //Created() called synchronously after the instance is created.
   //This is ran before that mounted and mounted helps put stuff in the dom
   created() {
-    //db calls from the set firebase project's collection posts
-    db.collection("posts")
-      .get()
-      //Get that data
-      .then((request) => {
-        request.forEach((response) => {
-          //Then the data is set as request, for each request set it as response
-          // each response is set to data
-          const data = {
-            //Firebase's set post ID
-            id: response.id,
-            //User created ID and data is where the information is called from in firebase
-            post_id: response.data().post_id,
-            title: response.data().title,
-            subtitle: response.data().subtitle,
-            thumbnail: response.data().thumbnail,
-            post_image: response.data().post_image,
-            link: response.data().link,
-            description: response.data().description,
-          };
-          //Once those are assigned push the data to posts. That is where its pushed to the data() function
-          this.posts.push(data);
-        });
-      });
+    this.$store.dispatch("fetchPosts");
   },
+  computed: mapState(["posts"]),
 };
 </script>
 
