@@ -41,6 +41,8 @@ export default new Vuex.Store({
                 .get()
                 //Get that data
                 .then((request) => {
+                    //postArray is to help forEach((response)) once each data is pulled it will be set into one array and that array will be pushed to state.
+                    //Instead of having each individual post going to state
                     const postArray = []
                     request.forEach((response) => {
                         //Then the data is set as request, for each request set it as response
