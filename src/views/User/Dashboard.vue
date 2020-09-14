@@ -44,7 +44,11 @@ export default {
   created() {
     this.$store.dispatch("fetchPosts");
   },
-  computed: mapState(["posts"]),
+  computed: {
+    ...mapState({
+      posts: (state) => state.Posts.posts,
+    }),
+  },
 };
 </script>
 
