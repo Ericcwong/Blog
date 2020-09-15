@@ -6,36 +6,22 @@
     <div class="container">
       <div class="newPosts">
         <router-link to="/admin/new-post">
-          <button class="btn btn-primary">New Post</button>
+          <b-button class="btn btn-primary">New Post</b-button>
         </router-link>
       </div>
-      <div class="table">
-        <table v-for="post of posts" :key="post.id">
-          <thead>
-            <tr>
-              <th>Title</th>
-              <th>Description</th>
-              <th>View blog</th>
-              <th>Edit blog</th>
-              <th>Delete blog</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>{{post.title}}</td>
-              <td>{{post.description}}</td>
-              <td>
-                <router-link :to="{name: 'view-post', params:{title: post.title  }}">Blog link</router-link>
-              </td>
-              <td>
-                <button @click="editPost" class="btn btn-primary">Edit Post</button>
-              </td>
-              <td>
-                <button @click="deletePost(post.id)" class="btn btn-danger">Delete Post</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+      <div class="cards">
+        <Card
+          v-for="post of posts"
+          :key="post.id"
+          :title="post.title"
+          :subtitle="post.subtitle"
+          :thumbnail="post.thumbnail"
+          :post_image="post.post_image"
+          :link="post.link"
+          :description="post.description"
+          :deletePost="deletePost"
+          :editPost="editPost"
+        />
       </div>
     </div>
   </div>
@@ -43,21 +29,16 @@
 
 <script>
 import db from "../../components/firebase/firebaseInit";
+import Card from "../../components/UI/cards/Card";
 import { mapState } from "vuex";
 export default {
   name: "Dashboard",
-  //Once created() function has been ran, posts:[] will be reactive
-  //The array will be populated
-  data() {
-    return {
-      posts: [],
-      post_id: null,
-    };
+  components: {
+    Card,
   },
   //Created() called synchronously after the instance is created.
   //This is ran before that mounted and mounted helps put stuff in the dom
   created() {
-    //db calls from the set firebase project's collection posts
     this.$store.dispatch("fetchPosts");
   },
   computed: {
@@ -108,64 +89,13 @@ export default {
 .newPosts {
   display: flex;
 }
-
-.table,
-thead,
-th,
-tbody,
-tr,
-td {
-  border: 1px solid black !important;
-  vertical-align: middle !important;
+.cards {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
-table {
-  width: 100%;
-  table-layout: fixed;
-}
-/* tr:nth-of-type(odd) {
-  background: #eee;
-} */
-
 @media only screen and (max-width: 775px) {
-  table,
-  thead,
-  tbody,
-  th,
-  td,
-  tr {
-    display: block;
-    border: none;
-  }
-  thead tr {
-    position: absolute;
-    top: -9999px;
-    left: -9999px;
-  }
-
-  td:before {
-    /* Now like a table header */
-    /* position: absolute; */
-    /* Top/left values mimic padding */
-    /* left: 6px;
-    width: 45%; */
-    padding-right: 10px;
-    white-space: nowrap;
-  }
-  td:nth-of-type(1):before {
-    content: "Title:";
-  }
-  td:nth-of-type(2):before {
-    content: "Description:";
-  }
-  td:nth-of-type(3):before {
-    content: "View Blog:";
-  }
-  td:nth-of-type(4):before {
-    content: "Edit Blog:";
-  }
-  td:nth-of-type(5):before {
-    content: "Delete Blog:";
-  }
 }
 </style>
 

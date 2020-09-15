@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <section id="firebaseui-auth-container"></section>
   </div>
   <!-- <div class="container">
@@ -26,12 +26,12 @@ import firebase from "firebase/app";
 import * as firebaseui from "firebaseui";
 export default {
   name: "Login",
-  data() {
-    return {
-      email: "",
-      password: "",
-    };
-  },
+  // data() {
+  //   return {
+  //     email: "",
+  //     password: "",
+  //   };
+  // },
   methods: {
     // login(e) {
     //   console.log("clicked");
@@ -74,5 +74,9 @@ export default {
 }
 .icon {
   margin-right: 10px;
+}
+#firebaseui-auth-container {
+  max-width: 100%;
+  width: 600px;
 }
 </style>

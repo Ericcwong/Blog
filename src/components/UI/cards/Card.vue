@@ -10,7 +10,11 @@
       </router-link>
     </div>
     <div class="card-footer text-muted">
-      <router-link :to="{name: 'view-post', params:{title: title  }}">View Blog</router-link>
+      <b-button>
+        <router-link :to="{name: 'view-post', params:{title: title  }}">View Blog</router-link>
+      </b-button>
+      <b-button v-if="editPost" @click="editPost">Edit</b-button>
+      <b-button v-if="deletePost" @click="deletePost">Delete</b-button>
     </div>
   </section>
 </template>
@@ -24,6 +28,12 @@ export default {
     // post_image: Array,
     link: String,
     description: String,
+    deletePost: {
+      type: Function,
+    },
+    editPost: {
+      type: Function,
+    },
   },
 };
 </script>
@@ -52,7 +62,13 @@ export default {
   justify-content: space-between;
   padding-bottom: 0;
 }
-a:link {
+a {
   text-decoration: none;
+  color: white;
+}
+a:hover,
+button:hover {
+  text-decoration: none;
+  color: black;
 }
 </style>

@@ -42,9 +42,9 @@ const routes = [{
     path: '/admin',
     name: 'admin',
     component: Admin,
-    meta: {
-      requiresAuth: true
-    }
+    // meta: {
+    //   requiresAuth: true
+    // }
   },
 ]
 
@@ -54,13 +54,13 @@ const router = new VueRouter({
   routes
 })
 
-router.beforeEach((to, from, next) => {
-  if (to.meta.requiresAuth) {
-    //Needs login
+// router.beforeEach((to, from, next) => {
+//   if (to.meta.requiresAuth) {
+//     //Needs login
 
-  } else {
-    next();
-  }
-})
+//   } else {
+//     next();
+//   }
+// })
 
 export default router
