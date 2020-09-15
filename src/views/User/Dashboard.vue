@@ -6,7 +6,7 @@
 
     <!-- To clear any confusions
       -- v-for="Post of posts"                    --
-      -- posts is the data() posts                --
+      -- posts is coming from computed: ...mapState                --
     -- Post is whats being passed down as props-->
     <div class="cards">
       <Card
@@ -24,18 +24,10 @@
 </template>
 
 <script>
-import db from "../../components/firebase/firebaseInit";
 import Card from "../../components/UI/cards/Card.vue";
 import { mapState } from "vuex";
 export default {
   name: "Dashboard",
-  //Once created() function has been ran, posts:[] will be reactive
-  //The array will be populated
-  // data() {
-  //   return {
-  //     posts: [],
-  //   };
-  // },
   components: {
     Card,
   },
@@ -46,6 +38,7 @@ export default {
   },
   computed: {
     ...mapState({
+      //state.Posts is calling from modules Posts
       posts: (state) => state.Posts.posts,
     }),
   },

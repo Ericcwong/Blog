@@ -43,7 +43,7 @@
 
 <script>
 import db from "../../components/firebase/firebaseInit";
-// import newPost from "../../components/UI/Posts/NewPost";
+import { mapState } from "vuex";
 export default {
   name: "Dashboard",
   //Once created() function has been ran, posts:[] will be reactive
@@ -54,37 +54,16 @@ export default {
       post_id: null,
     };
   },
-  components: {
-    // newPost,
-  },
   //Created() called synchronously after the instance is created.
   //This is ran before that mounted and mounted helps put stuff in the dom
   created() {
     //db calls from the set firebase project's collection posts
-    db.collection("posts")
-      .get()
-      //Get that data
-      .then((request) => {
-        request.forEach((response) => {
-          //Then the data is set as request, for each request set it as response
-          // each response is set to data
-          const data = {
-            //Firebase's set post ID
-            id: response.id,
-            //User created ID and data is where the information is called from in firebase
-            post_id: response.data().post_id,
-            title: response.data().title,
-            subtitle: response.data().subtitle,
-            thumbnail: response.data().thumbnail,
-            post_image: response.data().post_image,
-            link: response.data().link,
-            description: response.data().description,
-          };
-          console.log(data);
-          //Once those are assigned push the data to posts. That is where its pushed to the data() function
-          this.posts.push(data);
-        });
-      });
+    this.$store.dispatch("fetchPosts");
+  },
+  computed: {
+    ...mapState({
+      posts: (state) => state.Posts.posts,
+    }),
   },
   methods: {
     deletePost(doc) {

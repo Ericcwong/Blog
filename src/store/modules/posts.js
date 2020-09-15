@@ -13,6 +13,9 @@ export default {
         //actions.fetchPosts, when the posts are done being pulled in. The data is going to be stored
         SET_POSTS(state, posts) {
             state.posts = posts
+        },
+        DELETE_POSTS(state, posts) {
+
         }
 
     },

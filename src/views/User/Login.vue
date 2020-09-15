@@ -1,5 +1,8 @@
 <template>
-  <div class="container">
+  <div>
+    <section id="firebaseui-auth-container"></section>
+  </div>
+  <!-- <div class="container">
     <div class="loginBox">
       <h3>Login</h3>
       <form @keydown.enter="login" autocomplete="on">
@@ -11,16 +14,16 @@
           <font-awesome-icon :icon="['fas', 'lock']" class="icon" />
           <input v-model="password" type="password" id="password" placeholder="Password" />
         </div>
-        <!-- <label for="loginBtn">Sign in</label> -->
         <b-button @click="login" class="btn btn-primary">Sign In</b-button>
       </form>
     </div>
-  </div>
+  </div>-->
 </template>
 
 <script>
-import { auth } from "../../components/firebase/firebaseInit";
-
+import { ui } from "../../components/firebase/firebaseInit";
+import firebase from "firebase/app";
+import * as firebaseui from "firebaseui";
 export default {
   name: "Login",
   data() {
@@ -30,17 +33,26 @@ export default {
     };
   },
   methods: {
-    login(e) {
-      auth.signInWithEmailAndPassword(this.email, this.password).then(
-        () => {
-          this.$router.push("/admin");
-        },
-        (error) => {
-          alert(error.message);
-        }
-      );
-      event.preventDefault();
-    },
+    // login(e) {
+    //   console.log("clicked");
+    //   auth.signInWithEmailAndPassword(this.email, this.password).then(
+    //     () => {
+    //       this.$router.push("/admin");
+    //     },
+    //     (error) => {
+    //       alert(error.message);
+    //     }
+    //   );
+    //   event.preventDefault();
+    // },
+  },
+  mounted() {
+    var uiConfig = {
+      signInSuccessUrl: "/admin",
+      signInOptions: [firebase.auth.EmailAuthProvider.PROVIDER_ID],
+    };
+    var ui = new firebaseui.auth.AuthUI(firebase.auth());
+    ui.start("#firebaseui-auth-container", uiConfig);
   },
 };
 </script>
