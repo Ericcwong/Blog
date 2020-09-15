@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 import About from "../views/User/About.vue"
 import Admin from '../views/Admin/Admin.vue'
 import Dashboard from "../views/User/Dashboard.vue"
-// import EditPost from "../views/Admin/EditPost.vue"
+import EditPost from "../views/Admin/EditPost.vue"
 import NewPost from "../views/Admin/NewPost.vue"
 import ViewPost from "../views/User/ViewPost.vue"
 import Login from "../views/User/Login.vue"
@@ -13,11 +13,11 @@ const routes = [{
     name: 'dashboard',
     component: Dashboard
   },
-  // { //Added :post_id so you can edit the specific post
-  //   path: '/admin/edit-post/:post_id',
-  //   name: 'edit-post',
-  //   component: EditPost
-  // },
+  { //Added :post_id so you can edit the specific post
+    path: '/admin/edit-post/:title',
+    name: 'edit-post',
+    component: EditPost
+  },
   {
     path: '/admin/new-post',
     name: 'new-post',

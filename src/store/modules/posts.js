@@ -40,7 +40,7 @@ export default {
                             //Firebase's set post ID
                             id: response.id,
                             //User created ID and data is where the information is called from in firebase
-                            post_id: response.data().post_id,
+                            postId: response.data().postId,
                             title: response.data().title,
                             subtitle: response.data().subtitle,
                             thumbnail: response.data().thumbnail,
@@ -54,6 +54,22 @@ export default {
                     });
                     commit("SET_POSTS", postArray)
                 });
+        },
+        deletePost({
+            commit
+        }) {
+            if (confirm("Are you sure you want to delete this post?")) {
+                db.collection("posts")
+                    .doc(this.$route.params.title)
+                    .delete()
+                    .then(function () {
+                        console.log("Document Deleted!");
+                        this.$router.push("/admin");
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });
+            }
         }
 
     },

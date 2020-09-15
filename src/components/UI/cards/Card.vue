@@ -13,8 +13,11 @@
       <b-button>
         <router-link :to="{name: 'view-post', params:{title: title  }}">View Blog</router-link>
       </b-button>
-      <b-button v-if="editPost" @click="editPost">Edit</b-button>
+      <b-button v-if="editPost" @click="editPost">
+        <router-link :to="{name: 'edit-post', params:{title: title  }}">Edit Blog</router-link>
+      </b-button>
       <b-button v-if="deletePost" @click="deletePost">Delete</b-button>
+      <p>Post number: {{postId}}</p>
     </div>
   </section>
 </template>
@@ -28,6 +31,7 @@ export default {
     // post_image: Array,
     link: String,
     description: String,
+    postId: Number,
     deletePost: {
       type: Function,
     },

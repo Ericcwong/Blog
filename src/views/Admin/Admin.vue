@@ -21,6 +21,7 @@
           :description="post.description"
           :deletePost="deletePost"
           :editPost="editPost"
+          :postId="post.postId"
         />
       </div>
     </div>
@@ -47,11 +48,11 @@ export default {
     }),
   },
   methods: {
-    deletePost(doc) {
-      console.log(doc);
+    deletePost(event) {
+      // console.log(doc);
       if (confirm("Are you sure you want to delete this post?")) {
         db.collection("posts")
-          .doc(doc)
+          .doc()
           .delete()
           .then(function () {
             console.log("Document Deleted!");
