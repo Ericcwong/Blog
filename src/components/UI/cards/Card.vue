@@ -17,7 +17,6 @@
         <router-link :to="{name: 'edit-post', params:{title: title  }}">Edit Blog</router-link>
       </b-button>
       <b-button v-if="deletePost" @click="deletePost">Delete</b-button>
-      <p>Post number: {{postId}}</p>
     </div>
   </section>
 </template>

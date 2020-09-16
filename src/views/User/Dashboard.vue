@@ -12,7 +12,6 @@
       <Card
         v-for="post of posts"
         :key="post.id"
-        :postId="post.postId"
         :title="post.title"
         :subtitle="post.subtitle"
         :thumbnail="post.thumbnail"
