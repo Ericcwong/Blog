@@ -6,8 +6,8 @@
         <input v-model="title" type="text" placeholder="Title" />
         <input v-model="subtitle" type="text" placeholder="Sub-Title" />
         <input v-model="link" type="text" placeholder="links" />
-        <label for="upload-pictures" @change="onFileSelected">Upload pictures</label>
-        <input id="upload-pictures" type="file" multiple />
+        <label for="upload-pictures">Upload pictures</label>
+        <input @change="uploadImages" id="upload-pictures" type="file" multiple />
         <textarea v-model="description" type="text" placeholder="Description" rows="10" cols="600"></textarea>
 
         <label for="files">Thumbnail</label>
@@ -35,7 +35,6 @@
         :picutres="this.pictures"
         :link="this.link"
         :description="this.description"
-        :postId="this.postId"
       />
     </div>
   </div>
@@ -51,24 +50,26 @@ export default {
   },
   data() {
     return {
-      postId: null,
       title: null,
       subtitle: null,
       thumbnail: null,
       description: null,
       link: null,
-      pictures: null,
-      size: null,
+      pictures: [],
       error: null,
     };
   },
   methods: {
+    // onFileSelected(event) {
+    //   console.log("hello");
+    //   console.log(event.target.files);
+    //   // this.pictures = event.target.files;
+    // },
     addPost() {
       // console.log(postId);
       db.collection("posts")
         .doc()
         .set({
-          postId: this.postId,
           title: this.title,
           subtitle: this.subtitle,
           thumbnail: this.thumbnail,
@@ -106,20 +107,10 @@ export default {
       this.thumbnail = "";
       this.error = "";
     },
-    onFileSelected(event) {
-      this.pictures = event.target.files;
+    uploadImages() {
+      const pictures = this.$refs.pictures.pictures;
+      this.pictures = [...this.pictures, ...pictures];
     },
-  },
-  created() {
-    let postId = db
-      .collection("posts")
-      .get()
-      .then((snap) => {
-        postId = snap.size;
-        postId = postId + 1;
-        console.log(postId);
-        this.postId = postId;
-      });
   },
 };
 </script>

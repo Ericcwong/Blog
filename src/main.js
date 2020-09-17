@@ -2,7 +2,9 @@ import Vue from 'vue'
 import App from './App.vue'
 import './registerServiceWorker'
 import router from './router'
-import store from './store'
+// import store from './store'
+import VueCompositionApi from "@vue/composition-api"
+//Styling
 import {
   BootstrapVue,
   IconsPlugin
@@ -28,12 +30,14 @@ Vue.use(BootstrapVue)
 // Optionally install the BootstrapVue icon components plugin
 Vue.use(IconsPlugin)
 import "./assets/style.css"
+//End of Styling
+
 
 Vue.config.productionTip = false
-
+Vue.use(VueCompositionApi)
 new Vue({
   router,
-  store,
+  // store,
   render: function (h) {
     return h(App)
   }

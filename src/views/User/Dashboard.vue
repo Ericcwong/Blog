@@ -10,7 +10,7 @@
     -- Post is whats being passed down as props-->
     <div class="cards">
       <Card
-        v-for="post of posts"
+        v-for="post of state.posts"
         :key="post.id"
         :title="post.title"
         :subtitle="post.subtitle"
@@ -18,6 +18,7 @@
         :post_image="post.post_image"
         :link="post.link"
         :description="post.description"
+        :viewPost="viewPost"
       />
     </div>
   </div>
@@ -25,7 +26,7 @@
 
 <script>
 import Card from "../../components/UI/cards/Card.vue";
-import { mapState } from "vuex";
+import usePosts from "../../store/modules/posts";
 export default {
   name: "Dashboard",
   components: {
@@ -33,14 +34,11 @@ export default {
   },
   //Created() called synchronously after the instance is created.
   //This is ran before that mounted and mounted helps put stuff in the dom
-  created() {
-    this.$store.dispatch("fetchPosts");
-  },
-  computed: {
-    ...mapState({
-      //state.Posts is calling from modules Posts
-      posts: (state) => state.Posts.posts,
-    }),
+  setup() {
+    const { state, loadPost, viewPost } = usePosts();
+    loadPost();
+    console.log(state);
+    return { state, viewPost };
   },
 };
 </script>

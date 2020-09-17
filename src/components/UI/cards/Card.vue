@@ -5,18 +5,12 @@
         <h5 class="card-title">{{title}}</h5>
         <h6 class="card-subtitle mb-2 text-muted">{{subtitle}}</h6>
       </div>
-      <router-link :to="{name: 'view-post', params:{title: title  }}">
-        <img class="card-img-top" :src="thumbnail" alt />
-      </router-link>
+      <img @click="viewPost({title})" class="card-img-top" :src="thumbnail" alt />
     </div>
     <div class="card-footer text-muted">
-      <b-button>
-        <router-link :to="{name: 'view-post', params:{title: title  }}">View Blog</router-link>
-      </b-button>
-      <b-button v-if="editPost" @click="editPost">
-        <router-link :to="{name: 'edit-post', params:{title: title  }}">Edit Blog</router-link>
-      </b-button>
-      <b-button v-if="deletePost" @click="deletePost">Delete</b-button>
+      <b-button v-if="viewPost" @click="viewPost({title})">View Blog</b-button>
+      <b-button v-if="editPost" @click="editPost({title})">Edit Post</b-button>
+      <b-button v-if="deletePost" @click="deletePost({id})">Delete</b-button>
     </div>
   </section>
 </template>
@@ -24,6 +18,7 @@
 <script>
 export default {
   props: {
+    id: String,
     title: String,
     subtitle: String,
     thumbnail: String,
@@ -37,6 +32,9 @@ export default {
     editPost: {
       type: Function,
     },
+    viewPost: {
+      type: Function,
+    },
   },
 };
 </script>
@@ -47,6 +45,9 @@ export default {
   border: 1px solid darkgray;
   box-shadow: 3px 3px 2px gray;
   margin: 1.5rem;
+}
+.card-header {
+  text-align: center;
 }
 .card-img-top {
   display: block;

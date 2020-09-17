@@ -11,8 +11,9 @@
       </div>
       <div class="cards">
         <Card
-          v-for="post of posts"
+          v-for="post of state.posts"
           :key="post.id"
+          :id="post.id"
           :title="post.title"
           :subtitle="post.subtitle"
           :thumbnail="post.thumbnail"
@@ -21,7 +22,7 @@
           :description="post.description"
           :deletePost="deletePost"
           :editPost="editPost"
-          :postId="post.postId"
+          :viewPost="viewPost"
         />
       </div>
     </div>
@@ -29,9 +30,9 @@
 </template>
 
 <script>
+import usePosts from "../../store/modules/posts";
 import db from "../../components/firebase/firebaseInit";
 import Card from "../../components/UI/cards/Card";
-import { mapState } from "vuex";
 export default {
   name: "Dashboard",
   components: {
@@ -39,31 +40,11 @@ export default {
   },
   //Created() called synchronously after the instance is created.
   //This is ran before that mounted and mounted helps put stuff in the dom
-  created() {
-    this.$store.dispatch("fetchPosts");
-  },
-  computed: {
-    ...mapState({
-      posts: (state) => state.Posts.posts,
-    }),
-  },
-  methods: {
-    deletePost(event) {
-      // console.log(doc);
-      if (confirm("Are you sure you want to delete this post?")) {
-        db.collection("posts")
-          .doc()
-          .delete()
-          .then(function () {
-            console.log("Document Deleted!");
-            window.location.reload();
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-      }
-    },
-    editPost() {},
+  setup() {
+    const { state, loadPost, deletePost, editPost, viewPost } = usePosts();
+    loadPost();
+    console.log(state);
+    return { state, deletePost, editPost, viewPost };
   },
 };
 </script>
