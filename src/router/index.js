@@ -7,11 +7,17 @@ import EditPost from "../views/Admin/EditPost.vue"
 import NewPost from "../views/Admin/NewPost.vue"
 import ViewPost from "../views/User/ViewPost.vue"
 import Login from "../views/User/Login.vue"
+import Error from "../views/User/404.vue"
 Vue.use(VueRouter)
 const routes = [{
     path: '/',
     name: 'dashboard',
     component: Dashboard
+  },
+  {
+    path: "*",
+    name: "error",
+    component: Error
   },
   { //Added :post_id so you can edit the specific post
     path: '/admin/edit-post/:title',

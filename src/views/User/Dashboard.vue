@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="dashboardHeader">
-      <h2>Dashboard</h2>
+      <h2 class="title">Dashboard</h2>
     </div>
 
     <!-- To clear any confusions
@@ -45,16 +45,19 @@ export default {
 
 <style scoped>
 .dashboardHeader {
-  background-image: url("/img/UI/coffee.png");
+  /* background-image: url("/img/UI/coffee.png"); */
   position: relative;
   box-sizing: border-box;
   background-position: center;
   background-size: cover;
   height: 200px;
   margin-bottom: 30px;
+  text-align: center;
 }
-.dashboardHeader h2 {
+.title {
   color: white;
+  font-size: 3.5rem;
+  text-shadow: 2px 2px gray;
 }
 .cards {
   display: flex;

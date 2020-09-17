@@ -3,6 +3,8 @@
 html,
 body {
     font-family: 'Roboto Slab', serif;
+    background: rgb(115, 115, 115);
+    background: radial-gradient(circle, rgba(115, 115, 115, 1) 0%, rgba(0, 0, 0, 1) 100%);
 }
 
 body {

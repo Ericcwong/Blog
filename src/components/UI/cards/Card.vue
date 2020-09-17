@@ -43,7 +43,7 @@ export default {
 .card {
   width: 500px;
   border: 1px solid darkgray;
-  box-shadow: 3px 3px 2px gray;
+  box-shadow: 0 4px 8px 0 white, 0 6px 20px 0 white;
   margin: 1.5rem;
 }
 .card-header {
