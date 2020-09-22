@@ -50,8 +50,9 @@ export default {
 </script>
 <style scoped>
 .home {
-  color: white;
-  background-image: url("/img/UI/coffee.png");
+  color: black;
+  text-align: center;
+  /* background-image: url("/img/UI/coffee.png"); */
   position: relative;
   box-sizing: border-box;
   background-position: center;

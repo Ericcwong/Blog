@@ -1,22 +1,42 @@
 <template>
   <div class="container">
-    <section id="firebaseui-auth-container"></section>
+    <div class="loginBox">
+      <h1 class="title">Sign in</h1>
+      <form @keydown.enter="signIn">
+        <label for="email">Email:</label>
+        <input id="email" type="text" v-model="email" placeholder="email@email.com" />
+        <label for="password">Password:</label>
+        <input id="password" type="password" v-model="password" placeholder="password" />
+        <p class="error" v-if="error">{{error}}</p>
+        <input class="submitBtn" type="submit" @click="signIn" value="Sign in" />
+      </form>
+    </div>
   </div>
 </template>
 
 <script>
-import { ui } from "../../components/firebase/firebaseInit";
-import firebase from "firebase/app";
-import * as firebaseui from "firebaseui";
+// import { ui } from "../../components/firebase/firebaseInit";
+// import firebase from "firebase/app";
+// import * as firebaseui from "firebaseui";
+import useAuth from "../../store/modules/auth";
 export default {
   name: "Login",
-  mounted() {
-    var uiConfig = {
-      signInSuccessUrl: "/admin",
-      signInOptions: [firebase.auth.EmailAuthProvider.PROVIDER_ID],
+  data() {
+    return {
+      email: "",
+      password: "",
     };
-    var ui = new firebaseui.auth.AuthUI(firebase.auth());
-    ui.start("#firebaseui-auth-container", uiConfig);
+  },
+  setup() {
+    const { error, authenitcated, login } = useAuth();
+    console.log(error);
+    return { error, authenitcated, login };
+  },
+  methods: {
+    signIn(event) {
+      event.preventDefault();
+      this.login(this.email, this.password);
+    },
   },
 };
 </script>
@@ -26,21 +46,32 @@ export default {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  margin: 0 auto;
   justify-content: center;
   align-items: center;
+  color: black;
 }
 .loginBox {
-  border: 1px solid gray;
+  border: 1px solid black;
+  background-image: linear-gradient(white, gray);
 }
-.inputField {
-  margin: 20px;
+.title {
+  text-align: center;
 }
-.icon {
-  margin-right: 10px;
+form {
+  display: flex;
+  flex-direction: column;
+  padding: 10%;
+  width: 500px;
 }
-#firebaseui-auth-container {
-  max-width: 100%;
-  width: 600px;
+input {
+  /* margin-top: 5px; */
+  margin-bottom: 10px;
+}
+.submitBtn {
+  width: 30%;
+}
+.error {
+  color: red;
+  font-size: 1.25rem;
 }
 </style>

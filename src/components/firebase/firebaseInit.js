@@ -9,7 +9,7 @@ import firebaseConfig from "./firebaseConfig"
 const firebaseApp = firebase.initializeApp(firebaseConfig)
 
 
-// export const auth = firebase.auth()
+export const auth = firebase.auth()
 export const storage = firebase.storage()
 // export default firebaseui
 export default firebaseApp.firestore()
