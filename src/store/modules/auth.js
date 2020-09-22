@@ -6,34 +6,36 @@ import {
     auth
 } from "../../components/firebase/firebaseInit"
 import router from "@/router"
+
 export default function useAuth() {
-    const state = reactive({
-        authenitcated: false,
+    const authState = reactive({
+        authenticated: false,
         error: null
     })
 
     const login = (email, password) => {
         auth.signInWithEmailAndPassword(email, password).then(() => {
-            state.authenitcated = true
+            authState.authenticated = true
+            console.log(authState.authenticated)
             router.push("/admin")
         }).catch((error) => {
-            state.error = error
+            authState.error = error
             console.log(error)
         })
-        state.authenitcated = true
+        // authState.authenticated = true
+        // console.log(authState.authenticated)
     }
     const logout = () => {
         auth.signOut().then(() => {
-            state.authenitcated = false
+            authState.authenticated = false
             router.push("/")
         }).catch((error) => {
             state.error = error
             console.log(error)
         })
-        state.authenitcated = true
     }
     return {
-        ...toRefs(state),
+        ...toRefs(authState),
         login,
         logout
     }

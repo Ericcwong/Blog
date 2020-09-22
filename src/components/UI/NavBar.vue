@@ -19,7 +19,7 @@
             <em>Admin</em>
           </template>
           <b-dropdown-item href="/login">Sign in</b-dropdown-item>
-          <b-dropdown-item @click="logout">Logout</b-dropdown-item>
+          <b-dropdown-item @click="logout" v-if="authenticated">Logout</b-dropdown-item>
         </b-nav-item-dropdown>
       </b-navbar-nav>
     </b-collapse>
@@ -29,15 +29,23 @@
 
 <script>
 import { auth } from "../firebase/firebaseInit";
+import useAuth from "../../store/modules/auth";
 export default {
-  data: function () {
+  data() {
     return {
       isOpen: false,
     };
   },
-  methods: {
-    logout() {},
+  setup() {
+    const { authenticated, logout } = useAuth();
+    // const auth = authenticated;
+    console.log(authenticated);
+    // console.log(logout);
+    return { authenticated, logout };
   },
+  // methods: {
+  //   logout() {},
+  // },
 };
 </script>
 

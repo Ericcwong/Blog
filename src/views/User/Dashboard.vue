@@ -1,18 +1,20 @@
 <template>
-  <div>
-    <div class="dashboardHeader">
-      <h2 class="title">Life Blog</h2>
-      <h4>Welcome to my blog</h4>
-      <p>
-        2020 has been an eventful year with all that has been happening.
-        With this blog I hope to log all events that has or have been happening.
-        Hope you enjoy my adventures as much as I do!
-      </p>
+  <div class="dashboard">
+    <div class="dashboardTitle">
+      <div class="content">
+        <h2 class="title">Life Blog</h2>
+        <h4>Welcome to my blog</h4>
+        <p>
+          2020 has been an eventful year with all that has been happening.
+          With this blog I hope to log all events that has or have been happening.
+          Hope you enjoy my adventures as much as I do!
+        </p>
+      </div>
     </div>
 
     <!-- To clear any confusions
-      -- v-for="Post of posts"                    --
-      -- posts is coming from computed: ...mapState                --
+      -- v-for="Post of posts"                    
+      -- posts is coming from setup()'s loadPost()                
     -- Post is whats being passed down as props-->
     <div class="cards">
       <Card
@@ -50,16 +52,23 @@ export default {
 </script>
 
 <style scoped>
-.dashboardHeader {
-  width: 30%;
-  margin-bottom: 30px;
+.dashboard {
+  height: 100%;
+  min-height: 100vh;
   text-align: center;
+}
+.dashboardTitle {
+  background-color: #9fb9c6;
+}
+.content {
+  width: 30%;
   margin: 0 auto;
 }
 .title {
   color: white;
   font-size: 3.5rem;
   text-shadow: 2px 2px gray;
+  /* text-decoration: underline; */
 }
 .cards {
   display: flex;

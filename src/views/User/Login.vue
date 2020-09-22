@@ -28,9 +28,9 @@ export default {
     };
   },
   setup() {
-    const { error, authenitcated, login } = useAuth();
-    console.log(error);
-    return { error, authenitcated, login };
+    const { error, authState, login } = useAuth();
+    // console.log(error);
+    return { error, authState, login };
   },
   methods: {
     signIn(event) {

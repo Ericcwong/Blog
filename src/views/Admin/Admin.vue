@@ -31,6 +31,7 @@
 
 <script>
 import usePosts from "../../store/modules/posts";
+import useAuth from "../../store/modules/auth";
 import db from "../../components/firebase/firebaseInit";
 import Card from "../../components/UI/cards/Card";
 export default {
@@ -43,8 +44,10 @@ export default {
   setup() {
     const { state, loadPost, deletePost, editPost, viewPost } = usePosts();
     loadPost();
-    console.log(state);
+    // console.log(state);
     return { state, deletePost, editPost, viewPost };
+    const { authState } = useAuth();
+    console.log(authState.authenitcated);
   },
 };
 </script>
