@@ -30,22 +30,22 @@
 <script>
 import { auth } from "../firebase/firebaseInit";
 import useAuth from "../../store/modules/auth";
+import { watchEffect } from "@vue/composition-api";
 export default {
-  data() {
-    return {
-      isOpen: false,
-    };
-  },
-  setup() {
-    const { authenticated, logout } = useAuth();
-    // const auth = authenticated;
-    console.log(authenticated);
-    // console.log(logout);
-    return { authenticated, logout };
-  },
-  // methods: {
-  //   logout() {},
+  // data() {
+  //   return {
+  //     authenticated,
+  //   };
   // },
+  setup() {
+    const { authenticated, logout, status } = useAuth();
+    // const auth = authenticated;
+
+    watchEffect(() => {
+      status();
+    });
+    return { authenticated, logout, status };
+  },
 };
 </script>
 

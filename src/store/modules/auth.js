@@ -1,6 +1,7 @@
 import {
     reactive,
-    toRefs
+    toRefs,
+    watch
 } from "@vue/composition-api";
 import {
     auth
@@ -12,11 +13,8 @@ export default function useAuth() {
         authenticated: false,
         error: null
     })
-
     const login = (email, password) => {
         auth.signInWithEmailAndPassword(email, password).then(() => {
-            authState.authenticated = true
-            console.log(authState.authenticated)
             router.push("/admin")
         }).catch((error) => {
             authState.error = error
@@ -27,16 +25,25 @@ export default function useAuth() {
     }
     const logout = () => {
         auth.signOut().then(() => {
-            authState.authenticated = false
             router.push("/")
         }).catch((error) => {
             state.error = error
             console.log(error)
         })
     }
+    const status = () => {
+        auth.onAuthStateChanged(user => {
+            if (user) {
+                authState.authenticated = true
+            } else {
+                authState.authenticated = false
+            }
+        })
+    }
     return {
         ...toRefs(authState),
         login,
-        logout
+        logout,
+        status
     }
 }

@@ -40,6 +40,7 @@ export default {
   components: {
     Card,
   },
+
   //Created() called synchronously after the instance is created.
   //This is ran before that mounted and mounted helps put stuff in the dom
   setup() {
