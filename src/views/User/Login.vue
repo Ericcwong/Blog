@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="loginBox">
-      <h1 class="title">Sign in</h1>
+      <h1 class="title">Admin Sign in</h1>
       <form @keydown.enter="signIn">
         <label for="email">Email:</label>
         <input id="email" type="text" v-model="email" placeholder="email@email.com" />
@@ -51,27 +51,37 @@ export default {
   color: black;
 }
 .loginBox {
+  width: 80%;
   border: 1px solid black;
-  background-image: linear-gradient(white, gray);
+  border-radius: 10px;
+  background-color: white;
 }
 .title {
   text-align: center;
+  border-bottom: 1px ridge black;
 }
 form {
   display: flex;
   flex-direction: column;
-  padding: 10%;
-  width: 500px;
+  margin: 0 auto;
+  padding: 5%;
+  max-width: 500px;
 }
 input {
   /* margin-top: 5px; */
   margin-bottom: 10px;
+  border-radius: 5px;
 }
 .submitBtn {
-  width: 30%;
+  width: 35%;
 }
 .error {
   color: red;
   font-size: 1.25rem;
 }
+/* @media screen and (max-width: 750px) {
+  .loginBox {
+    width: 100%;
+  }
+} */
 </style>
