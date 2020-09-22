@@ -1,16 +1,14 @@
 <template>
   <section class="card">
-    <div class="card-body">
-      <img @click="viewPost({title})" class="card-img-top" :src="thumbnail" alt />
-      <div class="card-header">
-        <h5 class="card-title">{{title}}</h5>
-        <h6 class="card-subtitle mb-2 text-muted">{{subtitle}}</h6>
-      </div>
+    <img @click="viewPost({title})" class="card-img-top" :src="thumbnail" alt />
+    <div class="card-header">
+      <h5 class="card-title">{{title}}</h5>
+      <h6 class="card-subtitle mb-2 text-muted">{{subtitle}}</h6>
     </div>
     <div class="card-footer text-muted">
-      <b-button v-if="viewPost" @click="viewPost({title})">View Blog</b-button>
-      <b-button v-if="editPost" @click="editPost({title})">Edit Post</b-button>
-      <b-button v-if="deletePost" @click="deletePost({id})">Delete</b-button>
+      <b-button variant="primary" v-if="viewPost" @click="viewPost({title})">View Blog</b-button>
+      <b-button variant="info" v-if="editPost" @click="editPost({title})">Edit Post</b-button>
+      <b-button variant="danger" v-if="deletePost" @click="deletePost({id})">Delete</b-button>
     </div>
   </section>
 </template>
@@ -43,7 +41,6 @@ export default {
 .card {
   width: 40%;
   border: 1px solid darkgray;
-  /* box-shadow: 0 4px 8px 0 white, 0 6px 20px 0 white; */
   margin: 0 auto;
   margin-bottom: 20px;
 }
@@ -59,8 +56,13 @@ export default {
 }
 .card-footer {
   display: flex;
+  width: 100%;
+  /* flex-wrap: wrap; */
   justify-content: space-between;
   padding-bottom: 10px;
+}
+button {
+  max-width: 100%;
 }
 a {
   text-decoration: none;

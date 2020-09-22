@@ -78,10 +78,17 @@ export default {
   justify-content: space-evenly;
 }
 
-@media only screen and (max-width: 775px) {
+@media only screen and (max-width: 835px) {
   .cards {
-    display: inline-flex;
+    display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
+  }
+  .card {
+    width: 100%;
+  }
+  .content {
+    width: 70%;
   }
 }
 </style>

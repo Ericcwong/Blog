@@ -4,11 +4,6 @@
       <h1>Admin Page</h1>
     </div>
     <div class="container">
-      <div class="newPosts">
-        <router-link to="/admin/new-post">
-          <b-button class="btn btn-primary">New Post</b-button>
-        </router-link>
-      </div>
       <div class="cards">
         <Card
           v-for="post of state.posts"
@@ -55,19 +50,16 @@ export default {
 .home {
   color: black;
   text-align: center;
-  /* background-image: url("/img/UI/coffee.png"); */
   position: relative;
   box-sizing: border-box;
-  background-position: center;
-  background-size: cover;
-  height: 200px;
+  height: 10%;
   margin-bottom: 30px;
 }
 .newPosts {
   margin-bottom: 30px;
 }
 .container {
-  height: 70vh;
+  height: 100vh;
 }
 .dashboardHeader h2 {
   color: white;
@@ -81,7 +73,13 @@ export default {
   flex-wrap: wrap;
   justify-content: space-evenly;
 }
-@media only screen and (max-width: 775px) {
+@media only screen and (max-width: 1000px) {
+  .cards {
+    flex-direction: column;
+  }
+  .card {
+    width: 100%;
+  }
 }
 </style>
 
