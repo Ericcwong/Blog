@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import VueCompositionApi from "@vue/composition-api"
+//Routes
 import About from "../views/User/About.vue"
 import Admin from '../views/Admin/Admin.vue'
 import Dashboard from "../views/User/Dashboard.vue"
@@ -8,6 +10,24 @@ import NewPost from "../views/Admin/NewPost.vue"
 import ViewPost from "../views/User/ViewPost.vue"
 import Login from "../views/User/Login.vue"
 import Error from "../views/User/404.vue"
+// Store
+import useAuth from "../store/modules/auth"
+import {
+  watchEffect,
+  computed
+} from "@vue/composition-api"
+// import {
+//   reactive
+// } from "@vue/composition-api"
+Vue.use(VueCompositionApi)
+const {
+  authenticated,
+} = useAuth()
+console.log(authenticated)
+watchEffect(() => {
+  authenticated
+})
+
 Vue.use(VueRouter)
 const routes = [{
     path: '/',
@@ -22,12 +42,18 @@ const routes = [{
   { //Added :post_id so you can edit the specific post
     path: '/admin/edit-post/:title',
     name: 'edit-post',
-    component: EditPost
+    component: EditPost,
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/admin/new-post',
     name: 'new-post',
-    component: NewPost
+    component: NewPost,
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/view-post/:title',
@@ -48,9 +74,9 @@ const routes = [{
     path: '/admin',
     name: 'admin',
     component: Admin,
-    // meta: {
-    //   requiresAuth: true
-    // }
+    meta: {
+      requiresAuth: true
+    }
   },
 ]
 
@@ -60,13 +86,18 @@ const router = new VueRouter({
   routes
 })
 
-// router.beforeEach((to, from, next) => {
-//   if (to.meta.requiresAuth) {
-//     //Needs login
-
-//   } else {
-//     next();
-//   }
-// })
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (!authenticated) {
+      next({
+        path: "/login"
+      });
+    } else {
+      next()
+    }
+  } else {
+    next()
+  }
+})
 
 export default router

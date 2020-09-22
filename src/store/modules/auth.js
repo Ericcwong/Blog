@@ -1,7 +1,6 @@
 import {
     reactive,
     toRefs,
-    watch
 } from "@vue/composition-api";
 import {
     auth
@@ -42,6 +41,7 @@ export default function useAuth() {
     }
     return {
         ...toRefs(authState),
+        authState,
         login,
         logout,
         status

@@ -46,7 +46,7 @@ export default {
   setup() {
     const { state, loadPost, viewPost } = usePosts();
     loadPost();
-    console.log(state);
+    // console.log(state);
     return { state, viewPost };
   },
 };
