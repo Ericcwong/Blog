@@ -1,7 +1,13 @@
 <template>
   <div>
     <div class="dashboardHeader">
-      <h2 class="title">Dashboard</h2>
+      <h2 class="title">Life Blog</h2>
+      <h4>Welcome to my blog</h4>
+      <p>
+        2020 has been an eventful year with all that has been happening.
+        With this blog I hope to log all events that has or have been happening.
+        Hope you enjoy my adventures as much as I do!
+      </p>
     </div>
 
     <!-- To clear any confusions
@@ -45,14 +51,10 @@ export default {
 
 <style scoped>
 .dashboardHeader {
-  /* background-image: url("/img/UI/coffee.png"); */
-  position: relative;
-  box-sizing: border-box;
-  background-position: center;
-  background-size: cover;
-  height: 200px;
+  width: 30%;
   margin-bottom: 30px;
   text-align: center;
+  margin: 0 auto;
 }
 .title {
   color: white;
