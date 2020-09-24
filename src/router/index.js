@@ -12,14 +12,26 @@ import Login from "../views/User/Login.vue";
 import Error from "../views/User/404.vue";
 // Store
 import useAuth from "../store/modules/auth";
-import { reactive } from "@vue/composition-api";
+import {
+  watchEffect,
+  ref
+} from "@vue/composition-api";
 Vue.use(VueCompositionApi);
 Vue.use(VueRouter);
 
-let auth = reactive(useAuth().authenticated);
-console.log(auth);
-const routes = [
-  {
+
+const auth = ref(null)
+watchEffect(async () => {
+  auth.value = await useAuth().authenticated
+  // console.log(auth.value)
+  // const auth = ref(useAuth().authenticated.value);
+  // console.log(auth.value)
+});
+
+// let test = auth.value
+// console.log(test)
+// let auth = false;
+const routes = [{
     path: "/",
     name: "dashboard",
     component: Dashboard,
@@ -66,7 +78,7 @@ const routes = [
     name: "admin",
     component: Admin,
     meta: {
-      requiresAuth: true,
+      requiresAuth: true
     },
   },
 ];
@@ -78,7 +90,7 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  if (to.matched.some((record) => record.meta.requiresAuth) && !auth) {
+  if (to.meta.requiresAuth && !auth.value) {
     next("/login");
   } else {
     next();
