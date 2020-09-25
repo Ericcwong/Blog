@@ -2,23 +2,32 @@
   <div class="container">
     <div class="loginBox">
       <h1 class="title">Admin Sign in</h1>
-      <form @keydown.enter="signIn">
+      <form>
         <label for="email">Email:</label>
-        <input id="email" type="text" v-model="email" placeholder="email@email.com" />
+        <input
+          id="email"
+          type="text"
+          v-model="email"
+          placeholder="email@email.com"
+        />
         <label for="password">Password:</label>
-        <input id="password" type="password" v-model="password" placeholder="password" />
-        <p class="error" v-if="error">{{error}}</p>
-        <input class="submitBtn" type="submit" @click="signIn" value="Sign in" />
+        <input
+          id="password"
+          type="password"
+          v-model="password"
+          placeholder="password"
+        />
+        <!-- <p class="error" v-if="error">{{ error }}</p> -->
+        <input class="submitBtn" type="submit" value="Sign in" />
       </form>
     </div>
   </div>
 </template>
 
 <script>
-// import { ui } from "../../components/firebase/firebaseInit";
-// import firebase from "firebase/app";
-// import * as firebaseui from "firebaseui";
-import useAuth from "../../store/modules/auth";
+import { auth } from "../../components/firebase/firebaseInit";
+import { mapActions, mapState } from "vuex";
+// import useAuth from "../../store/modules/auth";
 export default {
   name: "Login",
   data() {
@@ -27,17 +36,20 @@ export default {
       password: "",
     };
   },
-  setup() {
-    const { error, login } = useAuth();
-    // console.log(error);
-    return { error, login };
-  },
   methods: {
-    signIn(event) {
+    login(event) {
       event.preventDefault();
-      this.login(this.email, this.password);
+      this.$store.auth.dispatch("login", {
+        email: this.email,
+        password: this.password,
+      });
     },
   },
+  // computed: {
+  //   test() {
+  //     console.log(this.$store.state.auth.testing);
+  //   },
+  // },
 };
 </script>
 

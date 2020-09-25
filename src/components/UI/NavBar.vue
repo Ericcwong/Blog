@@ -10,7 +10,7 @@
       <b-navbar-nav class="ml-auto">
         <b-navbar-nav>
           <b-nav-item href="/">Dashboard</b-nav-item>
-          <b-nav-item v-if="auth" href="/admin/new-post">New Post</b-nav-item>
+          <b-nav-item href="/admin/new-post">New Post</b-nav-item>
           <b-nav-item href="/about">About</b-nav-item>
         </b-navbar-nav>
 
@@ -19,16 +19,10 @@
           <template v-slot:button-content>
             <em>Admin</em>
           </template>
-          <b-dropdown-item href="/admin" v-if="authenticated"
-            >Admin Dashboard</b-dropdown-item
-          >
-          <b-dropdown-item @click="logout" v-if="authenticated"
-            >Logout</b-dropdown-item
-          >
+          <b-dropdown-item href="/admin">Admin Dashboard</b-dropdown-item>
+          <b-dropdown-item>Logout</b-dropdown-item>
 
-          <b-dropdown-item href="/login" v-else-if="!authenticated"
-            >Sign in</b-dropdown-item
-          >
+          <b-dropdown-item href="/login">Sign in</b-dropdown-item>
         </b-nav-item-dropdown>
       </b-navbar-nav>
     </b-collapse>
@@ -38,26 +32,7 @@
 
 <script>
 import { auth } from "../firebase/firebaseInit";
-import useAuth from "../../store/modules/auth";
-import { watchEffect, ref } from "@vue/composition-api";
-export default {
-  // data() {
-  //   return {
-  //     authenticated,
-  //   };
-  // },
-  setup() {
-    const { authenticated, logout, status } = useAuth();
-    const auth = ref(null);
-    // const auth = authenticated;
-
-    watchEffect(async () => {
-      auth.value = await useAuth().authenticated;
-      console.log(auth.value);
-    });
-    return { authenticated, logout, status, auth: ref(auth) };
-  },
-};
+export default {};
 </script>
 
 <style scoped>

@@ -11,26 +11,10 @@ import ViewPost from "../views/User/ViewPost.vue";
 import Login from "../views/User/Login.vue";
 import Error from "../views/User/404.vue";
 // Store
-import useAuth from "../store/modules/auth";
-import {
-  watchEffect,
-  ref
-} from "@vue/composition-api";
-Vue.use(VueCompositionApi);
+import store from "../store/index"
 Vue.use(VueRouter);
 
 
-const auth = ref(null)
-watchEffect(async () => {
-  auth.value = await useAuth().authenticated
-  // console.log(auth.value)
-  // const auth = ref(useAuth().authenticated.value);
-  // console.log(auth.value)
-});
-
-// let test = auth.value
-// console.log(test)
-// let auth = false;
 const routes = [{
     path: "/",
     name: "dashboard",
@@ -82,7 +66,6 @@ const routes = [{
     },
   },
 ];
-// console.log(useAuth().authenticated);
 const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
@@ -90,7 +73,7 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  if (to.meta.requiresAuth && !auth.value) {
+  if (to.meta.requiresAuth) {
     next("/login");
   } else {
     next();
