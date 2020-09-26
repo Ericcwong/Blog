@@ -11,11 +11,13 @@ import ViewPost from "../views/User/ViewPost.vue";
 import Login from "../views/User/Login.vue";
 import Error from "../views/User/404.vue";
 // Store
-import store from "../store/index"
+import store from "../store/index";
 Vue.use(VueRouter);
 
+const user = store.state.auth.user;
 
-const routes = [{
+const routes = [
+  {
     path: "/",
     name: "dashboard",
     component: Dashboard,
@@ -62,7 +64,7 @@ const routes = [{
     name: "admin",
     component: Admin,
     meta: {
-      requiresAuth: true
+      requiresAuth: true,
     },
   },
 ];
@@ -73,7 +75,7 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  if (to.meta.requiresAuth) {
+  if (to.meta.requiresAuth && !user) {
     next("/login");
   } else {
     next();

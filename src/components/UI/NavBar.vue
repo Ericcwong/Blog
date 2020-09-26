@@ -20,7 +20,7 @@
             <em>Admin</em>
           </template>
           <b-dropdown-item href="/admin">Admin Dashboard</b-dropdown-item>
-          <b-dropdown-item>Logout</b-dropdown-item>
+          <b-dropdown-item @click="logout">Logout</b-dropdown-item>
 
           <b-dropdown-item href="/login">Sign in</b-dropdown-item>
         </b-nav-item-dropdown>
@@ -32,7 +32,13 @@
 
 <script>
 import { auth } from "../firebase/firebaseInit";
-export default {};
+export default {
+  methods: {
+    logout() {
+      this.$store.dispatch("logoutActions");
+    },
+  },
+};
 </script>
 
 <style scoped>

@@ -4,21 +4,11 @@
       <h1 class="title">Admin Sign in</h1>
       <form>
         <label for="email">Email:</label>
-        <input
-          id="email"
-          type="text"
-          v-model="email"
-          placeholder="email@email.com"
-        />
+        <input id="email" type="text" v-model="email" placeholder="email@email.com" />
         <label for="password">Password:</label>
-        <input
-          id="password"
-          type="password"
-          v-model="password"
-          placeholder="password"
-        />
+        <input id="password" type="password" v-model="password" placeholder="password" />
         <!-- <p class="error" v-if="error">{{ error }}</p> -->
-        <input class="submitBtn" type="submit" value="Sign in" />
+        <input @click="login" class="submitBtn" type="submit" value="Sign in" />
       </form>
     </div>
   </div>
@@ -39,7 +29,9 @@ export default {
   methods: {
     login(event) {
       event.preventDefault();
-      this.$store.auth.dispatch("login", {
+      console.log(this.email);
+      console.log(this.password);
+      this.$store.dispatch("loginActions", {
         email: this.email,
         password: this.password,
       });

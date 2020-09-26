@@ -35,14 +35,14 @@ export default {
   },
   //Created() called synchronously after the instance is created.
   //This is ran before that mounted and mounted helps put stuff in the dom
-  // setup() {
-  //   const { state, loadPost, deletePost, editPost, viewPost } = usePosts();
-  //   loadPost();
-  //   // console.log(state);
-  //   return { state, deletePost, editPost, viewPost };
-  //   const { authState } = useAuth();
-  //   console.log(authState.authenitcated);
-  // },
+  setup() {
+    const { state, loadPost, deletePost, editPost, viewPost } = usePosts();
+    loadPost();
+    // console.log(state);
+    return { state, deletePost, editPost, viewPost };
+    const { authState } = useAuth();
+    console.log(authState.authenitcated);
+  },
 };
 </script>
 <style scoped>
