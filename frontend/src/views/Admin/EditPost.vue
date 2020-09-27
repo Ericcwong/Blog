@@ -15,7 +15,8 @@
           rows="10"
           cols="600"
         ></textarea>
-
+        <b-button @click="updatePost">Update</b-button>
+        <b-button @click="cancelUpdate">Cancel</b-button>
         <!-- <label for="files">Thumbnail</label>
         <input
           v-if="!thumbnail"
@@ -58,7 +59,7 @@ export default {
     Card,
   },
   created() {
-    let dbRef = db.collection("posts").doc(this.$route.params.title);
+    let dbRef = db.collection("posts").doc(this.$route.params.id);
     dbRef
       .get()
       .then((doc) => {
@@ -73,7 +74,7 @@ export default {
     updatePost(event) {
       event.preventDefault();
       db.collection("posts")
-        .doc(this.$route.params.title)
+        .doc(this.$route.params.id)
         .update(this.post)
         .then(() => {
           console.log("Post updated!");
@@ -82,6 +83,9 @@ export default {
         .catch((error) => {
           console.log(error);
         });
+    },
+    cancelUpdate() {
+      this.$router.push("/admin");
     },
 
     // deletePost(doc) {

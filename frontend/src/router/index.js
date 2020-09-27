@@ -12,12 +12,14 @@ import Login from "../views/User/Login.vue";
 import Error from "../views/User/404.vue";
 // Store
 import store from "../store/index";
+import {
+  faEnvelope
+} from "@fortawesome/free-solid-svg-icons";
 Vue.use(VueRouter);
 
 const user = store.state.auth.user;
-
-const routes = [
-  {
+console.log(user)
+const routes = [{
     path: "/",
     name: "dashboard",
     component: Dashboard,
@@ -29,7 +31,7 @@ const routes = [
   },
   {
     //Added :post_id so you can edit the specific post
-    path: "/admin/edit-post/:title",
+    path: "/admin/edit-post/:id",
     name: "edit-post",
     component: EditPost,
     meta: {
@@ -75,7 +77,9 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  if (to.meta.requiresAuth && !user) {
+  const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+  const isAuthenticated = store.state.auth.authenticated
+  if (requiresAuth && !isAuthenticated) {
     next("/login");
   } else {
     next();

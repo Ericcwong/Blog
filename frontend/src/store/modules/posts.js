@@ -5,7 +5,7 @@ import {
     reactive,
     toRefs
 } from "@vue/composition-api"
-
+import router from "../../router/index"
 
 export default function usePosts() {
     const state = reactive({
@@ -61,13 +61,13 @@ export default function usePosts() {
     }
     //Edit button redirect but needs functionaltiy to actually edit and update
     const editPost = (id) => {
-        console.log(id.title)
-        window.location.href = `admin/edit-post/${id.title}`
+        console.log(id.id)
+        router.push(`admin/edit-post/${id.id}`)
     }
     //View Post button redirect
     const viewPost = (id) => {
         console.log(id.title)
-        window.location.href = `view-post/${id.title}`
+        router.push(`view-post/${id.title}`)
     }
     return {
         state,

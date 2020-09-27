@@ -10,8 +10,11 @@
       <b-navbar-nav class="ml-auto">
         <b-navbar-nav>
           <b-nav-item href="/">Dashboard</b-nav-item>
-          <b-nav-item href="/admin/new-post">New Post</b-nav-item>
+          <b-nav-item v-if="userStatus" to="/admin/new-post"
+            >New Post</b-nav-item
+          >
           <b-nav-item href="/about">About</b-nav-item>
+          {{ userStatus }}
         </b-navbar-nav>
 
         <b-nav-item-dropdown right>
@@ -19,10 +22,16 @@
           <template v-slot:button-content>
             <em>Admin</em>
           </template>
-          <b-dropdown-item href="/admin">Admin Dashboard</b-dropdown-item>
-          <b-dropdown-item @click="logout">Logout</b-dropdown-item>
+          <b-dropdown-item v-if="userStatus" to="/admin"
+            >Admin Dashboard</b-dropdown-item
+          >
+          <b-dropdown-item v-if="userStatus" @click="logout"
+            >Logout</b-dropdown-item
+          >
 
-          <b-dropdown-item href="/login">Sign in</b-dropdown-item>
+          <b-dropdown-item v-if="!userStatus" to="/login"
+            >Sign in</b-dropdown-item
+          >
         </b-nav-item-dropdown>
       </b-navbar-nav>
     </b-collapse>
@@ -32,7 +41,14 @@
 
 <script>
 import { auth } from "../firebase/firebaseInit";
+import { mapGetters } from "vuex";
 export default {
+  computed: {
+    // authenticated() {
+    //   return this.$store.state.auth.authenticated;
+    // },
+    ...mapGetters(["userStatus"]),
+  },
   methods: {
     logout() {
       this.$store.dispatch("logoutActions");

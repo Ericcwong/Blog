@@ -1,14 +1,25 @@
 <template>
   <section class="card">
-    <img @click="viewPost({title})" class="card-img-top" :src="thumbnail" alt />
+    <img
+      @click="viewPost({ title })"
+      class="card-img-top"
+      :src="thumbnail"
+      alt
+    />
     <div class="card-header">
-      <h5 class="card-title">{{title}}</h5>
-      <h6 class="card-subtitle mb-2 text-muted">{{subtitle}}</h6>
+      <h5 class="card-title">{{ title }}</h5>
+      <h6 class="card-subtitle mb-2 text-muted">{{ subtitle }}</h6>
     </div>
     <div class="card-footer text-muted">
-      <b-button variant="primary" v-if="viewPost" @click="viewPost({title})">View Blog</b-button>
-      <b-button variant="info" v-if="editPost" @click="editPost({title})">Edit Post</b-button>
-      <b-button variant="danger" v-if="deletePost" @click="deletePost({id})">Delete</b-button>
+      <b-button variant="primary" v-if="viewPost" @click="viewPost({ title })"
+        >View Blog</b-button
+      >
+      <b-button variant="info" v-if="editPost" @click="editPost({ id })"
+        >Edit Post</b-button
+      >
+      <b-button variant="danger" v-if="deletePost" @click="deletePost({ id })"
+        >Delete</b-button
+      >
     </div>
   </section>
 </template>
