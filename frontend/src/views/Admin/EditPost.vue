@@ -15,8 +15,10 @@
           rows="10"
           cols="600"
         ></textarea>
-        <b-button @click="updatePost">Update</b-button>
-        <b-button @click="cancelUpdate">Cancel</b-button>
+        <div class="formUpdateButton">
+          <b-button @click="updatePost">Update</b-button>
+          <b-button @click="cancelUpdate">Cancel</b-button>
+        </div>
         <!-- <label for="files">Thumbnail</label>
         <input
           v-if="!thumbnail"
@@ -87,22 +89,6 @@ export default {
     cancelUpdate() {
       this.$router.push("/admin");
     },
-
-    // deletePost(doc) {
-    //   // console.log(doc);
-    //   if (confirm("Are you sure you want to delete this post?")) {
-    //     db.collection("posts")
-    //       .doc(this.$route.params.title)
-    //       .delete()
-    //       .then(function () {
-    //         console.log("Document Deleted!");
-    //         this.$router.push("/admin");
-    //       })
-    //       .catch((error) => {
-    //         console.log(error);
-    //       });
-    //   }
-    // },
   },
 };
 </script>
@@ -147,7 +133,7 @@ textarea {
   border-radius: 4px;
   box-sizing: border-box;
 }
-.formButtons {
+.formUpdateButton {
   display: flex;
   justify-content: space-between;
 }
