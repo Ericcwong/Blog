@@ -1,7 +1,7 @@
 <template>
   <!-- <div> -->
   <b-navbar toggleable="lg" type="dark" variant="dark">
-    <b-navbar-brand href="/">Eric's Blog</b-navbar-brand>
+    <b-navbar-brand to="/">Eric's Blog</b-navbar-brand>
 
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
@@ -9,11 +9,11 @@
       <!-- Right aligned nav items -->
       <b-navbar-nav class="ml-auto">
         <b-navbar-nav>
-          <b-nav-item href="/">Dashboard</b-nav-item>
+          <b-nav-item to="/">Dashboard</b-nav-item>
           <b-nav-item v-if="userStatus" to="/admin/new-post"
             >New Post</b-nav-item
           >
-          <b-nav-item href="/about">About</b-nav-item>
+          <b-nav-item to="/about">About</b-nav-item>
           {{ userStatus }}
         </b-navbar-nav>
 
