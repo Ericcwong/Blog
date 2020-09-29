@@ -1,19 +1,21 @@
 <template>
   <div class="container">
-    <div class="postHeader">
-      <h3>{{title}}</h3>
-    </div>
-    <div class="postSubHeader">
-      <h4>{{subtitle}}</h4>
-    </div>
-    <div >
+    <div class="image">
       <img class="postImage" :src="thumbnail" alt />
     </div>
+    <div class="postHeader">
+      <h3>{{ title }}</h3>
+    </div>
+    <div class="postSubHeader">
+      <h4>{{ subtitle }}</h4>
+    </div>
+
     <div class="postDescription">
-      <a :href="link">Link</a>
-      <p>{{description}}</p>
+      <!-- <a :href="link">Link</a> -->
+      <p>{{ description }}</p>
       <img :src="pictures" alt />
     </div>
+    <b-button> <router-link to="/">Back home</router-link></b-button>
   </div>
 </template>
 
@@ -70,11 +72,39 @@ export default {
 </script>
 
 <style scoped>
+.container {
+  height: 100%;
+  width: 100vw;
+  background: white;
+}
+/* Images */
+.image {
+  text-align: center;
+}
 .postImage {
-  max-width: 50%;
+  max-width: 100%;
   max-height: 50%;
   width: auto;
   height: auto;
   object-fit: contain;
+}
+/* Title's centered */
+.postHeader,
+.subHeader,
+h3,
+h4 {
+  text-align: center;
+}
+h3 {
+  font-size: 3rem;
+}
+/* Description */
+.postDescription {
+  margin: 0 auto;
+  width: 80%;
+}
+a {
+  text-decoration: none;
+  color: white;
 }
 </style>

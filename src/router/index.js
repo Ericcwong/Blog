@@ -4,6 +4,7 @@ import VueCompositionApi from "@vue/composition-api";
 //Routes
 import About from "../views/User/About.vue";
 import Admin from "../views/Admin/Admin.vue";
+import Blog from "../views/User/Blog.vue";
 import Dashboard from "../views/User/Dashboard.vue";
 import EditPost from "../views/Admin/EditPost.vue";
 import NewPost from "../views/Admin/NewPost.vue";
@@ -23,6 +24,11 @@ const routes = [{
     path: "/",
     name: "dashboard",
     component: Dashboard,
+  },
+  {
+    path: "/blogs",
+    name: "blogs",
+    component: Blog,
   },
   {
     path: "*",
@@ -73,6 +79,14 @@ const routes = [{
 const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
+
+  scrollBehavior: function (to) {
+    if (to.hash) {
+      return {
+        selector: to.hash
+      };
+    }
+  },
   routes,
 });
 
