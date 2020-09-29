@@ -1,21 +1,28 @@
 <template>
   <div class="dashboard">
     <div class="dashboardTitle">
-      <div class="content">
-        <h2 class="title">Life Blog</h2>
-        <h4>Welcome to my blog</h4>
-        <p>
-          2020 has been an eventful year with all that has been happening.
-          With this blog I hope to log all events that has or have been happening.
-          Hope you enjoy my adventures as much as I do!
-        </p>
-      </div>
+      <video-background
+        src="/img/UI/waveBackground.mp4"
+        style="max-height: 100vh; height: 100vh"
+      >
+        <h1 style="color: white">Hello welcome!</h1>
+
+        <div class="content">
+          <h2 class="title">Life Blog</h2>
+          <h4>Welcome to my blog</h4>
+          <p>
+            2020 has been an eventful year with all that has been happening.
+            With this blog I hope to log all events that has or have been
+            happening. Hope you enjoy my adventures as much as I do!
+          </p>
+        </div>
+      </video-background>
     </div>
 
     <!-- To clear any confusions
       -- v-for="Post of posts"                    
       -- posts is coming from setup()'s loadPost()                
-    -- Post is whats being passed down as props-->
+      -- Post is whats being passed down as props-->
     <div class="cards">
       <Card
         v-for="post of state.posts"
@@ -40,9 +47,6 @@ export default {
   components: {
     Card,
   },
-
-  //Created() called synchronously after the instance is created.
-  //This is ran before that mounted and mounted helps put stuff in the dom
   setup() {
     const { state, loadPost, viewPost } = usePosts();
     loadPost();
@@ -59,8 +63,11 @@ export default {
   text-align: center;
 }
 .dashboardTitle {
-  background-color: #9fb9c6;
+  /* background-color: #9fb9c6; */
+  /* background-image: url("/img/UI/waveBackground.gif"); */
+  height: 100%;
 }
+
 .content {
   width: 30%;
   margin: 0 auto;

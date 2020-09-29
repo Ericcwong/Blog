@@ -1,10 +1,9 @@
 <template>
-  <!-- <div> -->
-  <b-navbar toggleable="lg" type="dark" variant="dark">
+  <b-navbar toggleable="lg" type="dark" variant="secondary">
     <b-navbar-brand to="/">Eric's Blog</b-navbar-brand>
 
+    <!-- Nav bar will collapse on certain width -->
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
-
     <b-collapse id="nav-collapse" is-nav>
       <!-- Right aligned nav items -->
       <b-navbar-nav class="ml-auto">
@@ -14,14 +13,10 @@
             >New Post</b-nav-item
           >
           <b-nav-item to="/about">About</b-nav-item>
-          {{ userStatus }}
         </b-navbar-nav>
-
         <b-nav-item-dropdown right>
           <!-- Using 'button-content' slot -->
-          <template v-slot:button-content>
-            <em>Admin</em>
-          </template>
+          <template v-slot:button-content> Admin </template>
           <b-dropdown-item v-if="userStatus" to="/admin"
             >Admin Dashboard</b-dropdown-item
           >
@@ -36,7 +31,6 @@
       </b-navbar-nav>
     </b-collapse>
   </b-navbar>
-  <!-- </div> -->
 </template>
 
 <script>

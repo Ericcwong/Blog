@@ -21,7 +21,13 @@ import {
 import {
   FontAwesomeIcon
 } from '@fortawesome/vue-fontawesome'
+import VideoBackground from 'vue-responsive-video-background-player'
+import {
+  Plugin
+} from 'vue-responsive-video-background-player'
 
+Vue.component('video-background', VideoBackground);
+Vue.use(Plugin);
 library.add(faEnvelope, faLock)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)

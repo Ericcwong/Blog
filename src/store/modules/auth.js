@@ -43,7 +43,7 @@ export default {
         commit("CLEAR_USER");
         // console.log(state.user);
         router.push("/");
-      });
+      }).catch((error) => console.log(error));
     },
   },
   getters: {
