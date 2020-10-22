@@ -7,8 +7,20 @@
         <input v-model="subtitle" type="text" placeholder="Sub-Title" />
         <input v-model="link" type="text" placeholder="links" />
         <label for="upload-pictures">Upload pictures</label>
-        <input @change="uploadImages" id="upload-pictures" type="file" multiple />
-        <textarea v-model="description" type="text" placeholder="Description" rows="10" cols="600"></textarea>
+        <input
+          @change="uploadImages"
+          id="upload-pictures"
+          type="file"
+          multiple
+        />
+        <b-form-textarea
+          id="textarea"
+          v-model="description"
+          type="text"
+          placeholder="Description"
+          rows="10"
+          cols="600"
+        ></b-form-textarea>
 
         <label for="files">Thumbnail</label>
         <input
@@ -21,9 +33,11 @@
 
         <div class="formButtons" v-else>
           <b-button @click="removeImage">Remove Thumbnail</b-button>
-          <b-button @click="addPost" class="btn btn-primary">Add Post!</b-button>
+          <b-button @click="addPost" class="btn btn-primary"
+            >Add Post!</b-button
+          >
         </div>
-        <p style="color: red">{{error}}</p>
+        <p style="color: red">{{ error }}</p>
       </form>
     </div>
     <div class="previewCard">

@@ -2,9 +2,12 @@
   <div class="container">
     <div class="image">
       <img class="postImage" :src="thumbnail" alt />
+      <b-button class="homeButton">
+        <router-link to="/">Back home</router-link>
+      </b-button>
     </div>
     <div class="postHeader">
-      <h3>{{ title }}</h3>
+      <h3 class="postHeaderTitle">{{ title }}</h3>
     </div>
     <div class="postSubHeader">
       <h4>{{ subtitle }}</h4>
@@ -12,10 +15,10 @@
 
     <div class="postDescription">
       <!-- <a :href="link">Link</a> -->
-      <p>{{ description }}</p>
-      <img :src="pictures" alt />
+      <pre class="mt-3 mb-4">{{ description }}</pre>
+      <!-- <img :src="pictures" alt /> -->
     </div>
-    <b-button> <router-link to="/">Back home</router-link></b-button>
+    <b-footer></b-footer>
   </div>
 </template>
 
@@ -89,19 +92,29 @@ export default {
   object-fit: contain;
 }
 /* Title's centered */
-.postHeader,
+.postHeaderTitle,
 .subHeader,
 h3,
 h4 {
   text-align: center;
 }
-h3 {
+/* .postHeader {
+  display: flex;
+  justify-content: space-between;
+} */
+.postHeaderTitle {
   font-size: 3rem;
 }
 /* Description */
 .postDescription {
   margin: 0 auto;
   width: 80%;
+}
+pre {
+  font-size: 1.25rem;
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-x: hidden;
 }
 a {
   text-decoration: none;
