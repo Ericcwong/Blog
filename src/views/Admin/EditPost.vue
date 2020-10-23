@@ -19,9 +19,9 @@
           <b-button @click="updatePost">Update</b-button>
           <b-button @click="cancelUpdate">Cancel</b-button>
         </div>
-        <!-- <label for="files">Thumbnail</label>
+        <label for="files">Thumbnail</label>
         <input
-          v-if="!thumbnail"
+          v-if="!post.thumbnail"
           id="files"
           type="file"
           @change="onFileChange"
@@ -30,8 +30,10 @@
 
         <div class="formButtons" v-else>
           <b-button @click="removeImage">Remove Thumbnail</b-button>
-          <b-button @click="addPost" class="btn btn-primary">Add Post!</b-button>
-        </div>-->
+          <b-button @click="addPost" class="btn btn-primary"
+            >Add Post!</b-button
+          >
+        </div>
       </form>
     </div>
     <div class="previewCard">
