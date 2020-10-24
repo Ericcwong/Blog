@@ -18,7 +18,6 @@
       <pre class="mt-3 mb-4">{{ description }}</pre>
       <!-- <img :src="pictures" alt /> -->
     </div>
-    <b-footer></b-footer>
   </div>
 </template>
 
