@@ -27,12 +27,8 @@
           @change="onFileChange"
           placeholder="Add images"
         />
-
         <div class="formButtons" v-else>
-          <b-button @click="removeImage">Remove Thumbnail</b-button>
-          <b-button @click="addPost" class="btn btn-primary"
-            >Add Post!</b-button
-          >
+          <b-button @click="removeThumbnail">Remove Thumbnail</b-button>
         </div>
       </form>
     </div>
@@ -41,7 +37,7 @@
       <Card
         :title="post.title"
         :subtitle="post.subtitle"
-        :thumbnail="post.thumbnail"
+        :thumbnail="post.thumbnail || this.thumbnail"
         :picutres="post.pictures"
         :link="post.link"
         :description="post.description"
@@ -57,6 +53,7 @@ export default {
   data() {
     return {
       post: {},
+      thumbnail: null,
     };
   },
   components: {
@@ -79,7 +76,10 @@ export default {
       event.preventDefault();
       db.collection("posts")
         .doc(this.$route.params.id)
-        .update(this.post)
+        .update({
+          post: this.post,
+          thumbnail: this.thumbnail,
+        })
         .then(() => {
           console.log("Post updated!");
           this.$router.push("/admin");
@@ -90,6 +90,25 @@ export default {
     },
     cancelUpdate() {
       this.$router.push("/admin");
+    },
+    onFileChange(e) {
+      let files = e.target.files || e.dataTransfer.files;
+      console.log(files);
+      if (!files.length) return;
+      this.createImage(files[0]);
+    },
+    createImage(file) {
+      let thumbnail = new Image();
+      let reader = new FileReader();
+      let vm = this;
+
+      reader.onload = (e) => {
+        vm.thumbnail = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    },
+    removeThumbnail() {
+      this.post.thumbnail = "";
     },
   },
 };
