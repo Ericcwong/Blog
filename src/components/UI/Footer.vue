@@ -31,16 +31,15 @@ export default {};
 
 <style scoped>
 .footer {
-  display: inline-flex;
-  justify-content: space-evenly;
-}
-/* .navigation {
-  flex-grow: 4;
+  display: flex;
+  justify-content: center;
 }
 .content {
-  flex-grow: 2;
-} */
-/* .content-text {
-  width: 50%;
-} */
+  text-align: center;
+  flex: 1;
+}
+.navigation {
+  text-align: center;
+  flex: 1;
+}
 </style>
