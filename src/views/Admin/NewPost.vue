@@ -3,39 +3,51 @@
     <div class="createPost">
       <h3>New Post!</h3>
       <form class="newPost" @keydown.enter="createNewPost">
-        <input v-model="title" type="text" placeholder="Title" />
-        <input v-model="subtitle" type="text" placeholder="Sub-Title" />
-        <input v-model="link" type="text" placeholder="links" />
-        <label for="upload-pictures">Upload pictures</label>
         <input
-          @change="uploadImages"
-          id="upload-pictures"
-          type="file"
-          multiple
+          class="postInput"
+          v-model="title"
+          type="text"
+          placeholder="Title"
+        />
+        <input
+          class="postInput"
+          v-model="subtitle"
+          type="text"
+          placeholder="Sub-Title"
+        />
+        <input
+          class="postInput"
+          v-model="link"
+          type="text"
+          placeholder="links"
         />
         <b-form-textarea
           id="textarea"
+          class="postInput"
           v-model="description"
           type="text"
           placeholder="Description"
           rows="10"
           cols="600"
         ></b-form-textarea>
+        <div class="postImage">
+          <PhotoUpload />
 
-        <label for="files">Thumbnail</label>
-        <input
-          v-if="!thumbnail"
-          id="files"
-          type="file"
-          @change="onFileChange"
-          placeholder="Add images"
-        />
+          <label for="thumbnail">Thumbnail</label>
+          <input
+            v-if="!thumbnail"
+            id="thumbnail"
+            type="file"
+            @change="onFileChange"
+            placeholder="Add images"
+          />
 
-        <div class="formButtons" v-else>
-          <b-button @click="removeImage">Remove Thumbnail</b-button>
-          <b-button @click="addPost" class="btn btn-primary"
-            >Add Post!</b-button
-          >
+          <div class="formButtons" v-else>
+            <b-button @click="removeImage">Remove Thumbnail</b-button>
+            <b-button @click="addPost" class="btn btn-primary"
+              >Add Post!</b-button
+            >
+          </div>
         </div>
         <p style="color: red">{{ error }}</p>
       </form>
@@ -56,11 +68,13 @@
 
 <script>
 import Card from "../../components/UI/cards/Card";
+import PhotoUpload from "@/components/UI/Photo/PhotoUpload";
 import db, { storage } from "../../components/firebase/firebaseInit";
 export default {
   name: "newPost",
   components: {
     Card,
+    PhotoUpload,
   },
   data() {
     return {
@@ -121,10 +135,6 @@ export default {
       this.thumbnail = "";
       this.error = "";
     },
-    uploadImages() {
-      const pictures = this.$refs.pictures.pictures;
-      this.pictures = [...this.pictures, ...pictures];
-    },
   },
 };
 </script>
@@ -153,7 +163,7 @@ form {
   justify-content: space-between;
   max-width: 100vw;
 }
-input {
+.postInput {
   max-width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -172,6 +182,9 @@ textarea {
 .formButtons {
   display: flex;
   justify-content: space-between;
+}
+.postImage {
+  border: 1px solid #ccc;
 }
 /* styling for mobile */
 @media screen and (max-width: 950px) {
