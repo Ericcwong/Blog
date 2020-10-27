@@ -2,16 +2,16 @@
   <footer class="footer">
     <div class="navigation">
       <h1>Navigation</h1>
-      <nav>
-        <button>
+      <nav class="navButtons">
+        <b-button class="navButton">
           <router-link to="/">Home</router-link>
-        </button>
-        <button>
+        </b-button>
+        <b-button class="navButton">
           <router-link to="/blogs">Blogs</router-link>
-        </button>
-        <button>
+        </b-button>
+        <b-button class="navButton">
           <router-link to="/about">About</router-link>
-        </button>
+        </b-button>
       </nav>
     </div>
     <div class="content">
@@ -33,6 +33,7 @@ export default {};
 .footer {
   display: flex;
   justify-content: center;
+  background-color: #6c757d;
 }
 .content {
   text-align: center;
@@ -41,5 +42,11 @@ export default {};
 .navigation {
   text-align: center;
   flex: 1;
+}
+.navButton {
+  margin: 10px;
+}
+a {
+  color: white;
 }
 </style>
