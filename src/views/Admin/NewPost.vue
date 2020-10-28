@@ -103,7 +103,8 @@ export default {
           thumbnail: this.thumbnail,
           description: this.description,
           link: this.link,
-          pictures: this.pictures,
+        }).then(image =>{
+          storage.ref('images/' + )
         })
         .then((docRef) => {
           this.$router.push("/");
