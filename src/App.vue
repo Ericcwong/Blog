@@ -20,6 +20,6 @@ export default {
 </script>
 <style scoped>
 #app {
-  flex: 1 0 auto;
+  height: 100%;
 }
 </style>

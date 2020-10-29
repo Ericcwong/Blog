@@ -19,6 +19,7 @@
           <b-button @click="updatePost">Update</b-button>
           <b-button @click="cancelUpdate">Cancel</b-button>
         </div>
+        <br />
         <label for="files">Thumbnail</label>
         <input
           v-if="!post.thumbnail"
@@ -30,18 +31,40 @@
         <div class="formButtons" v-else>
           <b-button @click="removeThumbnail">Remove Thumbnail</b-button>
         </div>
+        <div class="error" v-if="error !== null">
+          {{ error }}
+        </div>
       </form>
     </div>
-    <div class="previewCard">
-      <h3>Post Preview</h3>
-      <Card
-        :title="post.title"
-        :subtitle="post.subtitle"
-        :thumbnail="post.thumbnail || this.thumbnail"
-        :picutres="post.pictures"
-        :link="post.link"
-        :description="post.description"
-      />
+    <div class="preview">
+      <div class="previewCard">
+        <h3>Card Preview</h3>
+        <Card
+          :title="post.title"
+          :subtitle="post.subtitle"
+          :thumbnail="post.thumbnail || this.thumbnail"
+          :picutres="post.pictures"
+          :link="post.link"
+          :description="post.description"
+        />
+      </div>
+      <div class="previewPost">
+        <div class="image">
+          <img class="postImage" :src="post.thumbnail" alt />
+        </div>
+        <div class="postHeader">
+          <h3 class="postHeaderTitle">{{ post.title }}</h3>
+        </div>
+        <div class="postSubHeader">
+          <h4>{{ post.subtitle }}</h4>
+        </div>
+
+        <div class="postDescription">
+          <!-- <a :href="link">Link</a> -->
+          <pre class="mt-3 mb-4">{{ post.description }}</pre>
+          <!-- <img :src="pictures" alt /> -->
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -54,6 +77,7 @@ export default {
     return {
       post: {},
       thumbnail: null,
+      error: null,
     };
   },
   components: {
@@ -85,6 +109,7 @@ export default {
           this.$router.push("/admin");
         })
         .catch((error) => {
+          this.error = error;
           console.log(error);
         });
     },
@@ -118,7 +143,6 @@ export default {
 .newPost {
   display: inline-grid;
   margin-right: 30px;
-  /* flex-direction: inline; */
 }
 label {
   display: flex;
@@ -132,12 +156,12 @@ form {
 }
 .container {
   border-radius: 5px;
-  /* background-color: #f2f2f2; */
   padding: 20px;
   display: flex;
   justify-content: space-between;
   max-width: 100vw;
-  height: 100vh;
+  /* height: 100vh; */
+  /* height: 100%; */
 }
 input {
   max-width: 100%;
@@ -159,6 +183,21 @@ textarea {
   display: flex;
   justify-content: space-between;
 }
+.error {
+  color: red;
+  font-size: 1.5rem;
+}
+.preview {
+  display: inline-flex;
+  flex-wrap: wrap;
+}
+.previewCard {
+  text-align: center;
+}
+.previewPost {
+  border: 1px solid black;
+}
+
 /* styling for mobile */
 @media screen and (max-width: 950px) {
   .container {

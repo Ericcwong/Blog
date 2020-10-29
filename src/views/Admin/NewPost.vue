@@ -137,6 +137,14 @@ export default {
 </script>
 
 <style scoped>
+.container {
+  border-radius: 5px;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  max-width: 100vw;
+  height: 100vh;
+}
 .newPost {
   display: inline-grid;
   margin-right: 30px;
@@ -152,15 +160,7 @@ form {
   margin: 0 auto;
   max-width: 100%;
 }
-.container {
-  border-radius: 5px;
-  /* background-color: #f2f2f2; */
-  padding: 20px;
-  display: flex;
-  justify-content: space-between;
-  max-width: 100vw;
-  height: 100vh;
-}
+
 .postInput {
   max-width: 100%;
   padding: 12px 20px;
