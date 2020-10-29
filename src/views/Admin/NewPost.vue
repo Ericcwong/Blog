@@ -31,7 +31,7 @@
           cols="600"
         ></b-form-textarea>
         <div class="postImage">
-          <PhotoUpload />
+          <PhotoUpload @selectedImages="updateSelectedImages" />
 
           <label for="thumbnail">Thumbnail</label>
           <input
@@ -88,13 +88,7 @@ export default {
     };
   },
   methods: {
-    // onFileSelected(event) {
-    //   console.log("hello");
-    //   console.log(event.target.files);
-    //   // this.pictures = event.target.files;
-    // },
     addPost() {
-      // console.log(postId);
       db.collection("posts")
         .doc()
         .set({
@@ -103,8 +97,6 @@ export default {
           thumbnail: this.thumbnail,
           description: this.description,
           link: this.link,
-        }).then(image =>{
-          storage.ref('images/' + )
         })
         .then((docRef) => {
           this.$router.push("/");
@@ -135,6 +127,10 @@ export default {
     removeImage(e) {
       this.thumbnail = "";
       this.error = "";
+    },
+    updateSelectedImages(images) {
+      this.pictures.push(images);
+      console.log(this.pictures);
     },
   },
 };

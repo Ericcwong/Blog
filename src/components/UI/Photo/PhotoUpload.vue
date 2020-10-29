@@ -24,14 +24,8 @@ export default {
       let fileSelected = e.target.files[0];
       let filesSelected = e.target.files;
       for (let i = 0; i < filesSelected.length; i++) {
-        console.log(e.target.files[i].name);
-        let storageRef = storage.ref("images/" + e.target.files[i].name);
-        let task = storageRef.put(e.target.files[i]);
-        task.on("state_changed", function progress(snapshot) {
-          let percentage =
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          uploader.value = percentage;
-        });
+        let task = e.target.files[i];
+        this.$emit("selectedImages", task);
       }
     },
   },

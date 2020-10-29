@@ -1,25 +1,21 @@
 <template>
-  <div class>
-    <div class="home">
-      <h1>Admin Page</h1>
-    </div>
-    <div class="container">
-      <div class="cards">
-        <Card
-          v-for="post of state.posts"
-          :key="post.id"
-          :id="post.id"
-          :title="post.title"
-          :subtitle="post.subtitle"
-          :thumbnail="post.thumbnail"
-          :post_image="post.post_image"
-          :link="post.link"
-          :description="post.description"
-          :deletePost="deletePost"
-          :editPost="editPost"
-          :viewPost="viewPost"
-        />
-      </div>
+  <div class="home">
+    <h1>Admin Page</h1>
+    <div class="cards">
+      <Card
+        v-for="post of state.posts"
+        :key="post.id"
+        :id="post.id"
+        :title="post.title"
+        :subtitle="post.subtitle"
+        :thumbnail="post.thumbnail"
+        :post_image="post.post_image"
+        :link="post.link"
+        :description="post.description"
+        :deletePost="deletePost"
+        :editPost="editPost"
+        :viewPost="viewPost"
+      />
     </div>
   </div>
 </template>
@@ -59,6 +55,8 @@ export default {
 }
 .container {
   height: 100vh;
+  height: 100%;
+  width: 100vw;
 }
 .dashboardHeader h2 {
   color: white;
@@ -71,6 +69,9 @@ export default {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-evenly;
+}
+.card {
+  width: 25%;
 }
 @media only screen and (max-width: 1000px) {
   .cards {
