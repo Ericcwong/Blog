@@ -137,6 +137,7 @@ form {
   display: flex;
   justify-content: space-between;
   max-width: 100vw;
+  height: 100vh;
 }
 input {
   max-width: 100%;

@@ -8,6 +8,7 @@ export default {
     authenticated: false,
     error: null,
   },
+
   //Mutations are what changes the state value
   mutations: {
     UPDATE_USER(state, payload, error) {

@@ -49,6 +49,7 @@ export default {
   box-sizing: border-box;
   height: 10%;
   margin-bottom: 30px;
+  height: 100vh;
 }
 .newPosts {
   margin-bottom: 30px;

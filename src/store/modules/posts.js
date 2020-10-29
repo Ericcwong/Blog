@@ -45,14 +45,13 @@ export default function usePosts() {
     }
     //Delete singular post
     const deletePost = (id) => {
-        console.log(id.id)
         if (confirm("Are you sure you want to DELETE this?")) {
             db.collection("posts")
                 .doc(id.id)
                 .delete()
                 .then(() => {
                     console.log("Document Deleted.");
-                    window.location.reload();
+                    loadPost();
                 }).catch((error) => {
                     console.log(error)
                 })
