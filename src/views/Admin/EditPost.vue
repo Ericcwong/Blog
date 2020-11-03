@@ -47,6 +47,16 @@
           :link="post.link"
           :description="post.description"
         />
+        <div class="previewPost">
+          <ViewPostCard
+            :title="post.title"
+            :subtitle="post.subtitle"
+            :thumbnail="post.thumbnail || this.thumbnail"
+            :picutres="post.pictures"
+            :link="post.link"
+            :description="post.description"
+          />
+        </div>
       </div>
       <div class="previewPost">
         <div class="image">
@@ -70,6 +80,7 @@
 </template>
 
 <script>
+import ViewPostCard from "@/components/UI/cards/ViewPostCard.vue";
 import Card from "../../components/UI/cards/Card";
 import db, { storage } from "../../components/firebase/firebaseInit";
 export default {
@@ -82,6 +93,7 @@ export default {
   },
   components: {
     Card,
+    ViewPostCard,
   },
   created() {
     let dbRef = db.collection("posts").doc(this.$route.params.id);

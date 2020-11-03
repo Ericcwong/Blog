@@ -3,6 +3,24 @@
     <div class="createPost">
       <h3>New Post!</h3>
       <form class="newPost" @keydown.enter="createNewPost">
+        <div class="postImage">
+          <label for="thumbnail">Thumbnail</label>
+          <input
+            v-if="!thumbnail"
+            id="thumbnail"
+            type="file"
+            @change="onFileChange"
+            placeholder="Add images"
+          />
+
+          <div class="formButtons" v-else>
+            <b-button @click="removeImage">Remove Thumbnail</b-button>
+            <b-button @click="addPost" class="btn btn-primary"
+              >Add Post!</b-button
+            >
+          </div>
+          <PhotoUpload @selectedImages="updateSelectedImages" />
+        </div>
         <input
           class="postInput"
           v-model="title"
@@ -30,38 +48,36 @@
           rows="10"
           cols="600"
         ></b-form-textarea>
-        <div class="postImage">
-          <PhotoUpload @selectedImages="updateSelectedImages" />
 
-          <label for="thumbnail">Thumbnail</label>
-          <input
-            v-if="!thumbnail"
-            id="thumbnail"
-            type="file"
-            @change="onFileChange"
-            placeholder="Add images"
-          />
-
-          <div class="formButtons" v-else>
-            <b-button @click="removeImage">Remove Thumbnail</b-button>
-            <b-button @click="addPost" class="btn btn-primary"
-              >Add Post!</b-button
-            >
-          </div>
-        </div>
         <p style="color: red">{{ error }}</p>
       </form>
     </div>
-    <div class="previewCard">
-      <h3>Post Preview</h3>
-      <Card
-        :title="this.title"
-        :subtitle="this.subtitle"
-        :thumbnail="this.thumbnail"
-        :picutres="this.pictures"
-        :link="this.link"
-        :description="this.description"
-      />
+    <div class="preview" v-if="this.thumbnail !== ''">
+      <div class="previewCard">
+        <h3>Card Preview</h3>
+        <Card
+          :title="this.title"
+          :subtitle="this.subtitle"
+          :thumbnail="this.thumbnail"
+          :picutres="this.pictures"
+          :link="this.link"
+          :description="this.description"
+        />
+        <div class="previewPost">
+          <h3>Post Preview</h3>
+          <ViewPostCard
+            :title="this.title"
+            :subtitle="this.subtitle"
+            :thumbnail="this.thumbnail || this.thumbnail"
+            :picutres="this.pictures"
+            :link="this.link"
+            :description="this.description"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="missingThumbnail" v-else>
+      <h1>Add a thumbnail to start the post!</h1>
     </div>
   </div>
 </template>
@@ -69,18 +85,20 @@
 <script>
 import Card from "../../components/UI/cards/Card";
 import PhotoUpload from "@/components/UI/Photo/PhotoUpload";
+import ViewPostCard from "@/components/UI/cards/ViewPostCard.vue";
 import db, { storage } from "../../components/firebase/firebaseInit";
 export default {
   name: "newPost",
   components: {
     Card,
     PhotoUpload,
+    ViewPostCard,
   },
   data() {
     return {
       title: null,
       subtitle: null,
-      thumbnail: null,
+      thumbnail: "",
       description: null,
       link: null,
       pictures: [],
@@ -143,7 +161,13 @@ export default {
   display: flex;
   justify-content: space-between;
   max-width: 100vw;
-  height: 100vh;
+  /* height: 100vh; */
+  min-height: 100%;
+}
+h3 {
+  color: white;
+  margin-top: 20px;
+  text-align: center;
 }
 .newPost {
   display: inline-grid;
@@ -184,11 +208,28 @@ textarea {
 .postImage {
   border: 1px solid #ccc;
 }
+.previewCard {
+  text-align: center;
+}
+.preview {
+  display: flex;
+}
 /* styling for mobile */
 @media screen and (max-width: 950px) {
   .container {
     display: inline;
     max-width: 100vw;
+  }
+  .newPost {
+    display: inline;
+  }
+  input {
+    width: 100%;
+  }
+  .createPost {
+    /* margin: 0 auto; */
+    /* vertical-align: center; */
+    /* text-align: center; */
   }
 }
 </style>

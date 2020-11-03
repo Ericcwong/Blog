@@ -75,6 +75,7 @@ export default {
 
 <style scoped>
 .container {
+  margin-top: 40px;
   height: 100%;
   width: 100vw;
   background: white;
@@ -84,6 +85,7 @@ export default {
   text-align: center;
 }
 .postImage {
+  margin-top: 20px;
   max-width: 100%;
   max-height: 50%;
   width: auto;
