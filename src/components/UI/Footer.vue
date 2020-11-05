@@ -49,4 +49,9 @@ export default {};
 a {
   color: white;
 }
+@media screen and (max-width: 600px) {
+  h1 {
+    font-size: 1.4rem;
+  }
+}
 </style>

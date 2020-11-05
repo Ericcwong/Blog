@@ -121,4 +121,12 @@ a {
   text-decoration: none;
   color: white;
 }
+@media screen and (max-width: 600px) {
+  .container {
+    text-align: center;
+  }
+  pre {
+    font-size: 1.18rem;
+  }
+}
 </style>

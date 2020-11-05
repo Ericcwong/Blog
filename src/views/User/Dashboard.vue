@@ -101,54 +101,7 @@ export default {
   flex-wrap: wrap;
   justify-content: space-evenly;
 }
-.scrollDownIcon {
-  position: absolute;
-  bottom: 100px;
-  left: 50%;
-  width: 40px;
-  height: 40px;
-  /* background: white; */
-  transform: translateY(-80px) translateX(-50%) rotate(45deg);
-}
-.scrollDownIcon span {
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: block;
-  width: 100%;
-  height: 100%;
-  border-bottom: 2px solid white;
-  border-right: 2px solid white;
-  animation: animate 1.5s linear;
-  animation-iteration-count: 4;
-  opacity: 0;
-}
-.scrollDownIcon span:nth-child(1) {
-  transform: translate(-15px, -15px);
-}
-.scrollDownIcon span:nth-child(2) {
-  transform: translate(0, 0);
-}
-/* .scrollDownIcon span:nth-child(2) {
-  transform: translate(0, 0);
-} */
-@keyframes animate {
-  0% {
-    top: -5px;
-    left: -5px;
-    opacity: 0;
-  }
-  25% {
-    top: 0px;
-    left: 0px;
-    opacity: 1;
-  }
-  100% {
-    top: 5px;
-    left: 5px;
-    opacity: 0;
-  }
-}
+
 @media only screen and (max-width: 1200px) {
   /* .content {
     font-size: 5vw;
