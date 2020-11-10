@@ -20,12 +20,16 @@ export default {
     };
   },
   methods: {
-    uploadImages(e) {
-      let fileSelected = e.target.files[0];
+    async uploadImages(e) {
       let filesSelected = e.target.files;
       for (let i = 0; i < filesSelected.length; i++) {
         let task = e.target.files[i];
-        this.$emit("selectedImages", task);
+        const storageRef = storage.ref();
+        const fileRef = storageRef.child(task.name);
+        // await fileRef.put(task);
+        const fileUrl = await fileRef.getDownloadURL();
+        console.log(fileUrl);
+        // this.$emit("selectedImages", task);
       }
     },
   },
