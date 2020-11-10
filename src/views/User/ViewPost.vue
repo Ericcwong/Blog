@@ -2,6 +2,15 @@
   <div class="container">
     <div class="image">
       <img class="postImage" :src="thumbnail" alt />
+      <div class="photos">
+        <img
+          class="photo"
+          v-for="picture in pictures"
+          :key="picture.id"
+          :src="picture"
+          alt=""
+        />
+      </div>
       <b-button class="homeButton">
         <router-link to="/">Back home</router-link>
       </b-button>
@@ -92,6 +101,13 @@ export default {
   height: auto;
   object-fit: contain;
 }
+.photos {
+  display: flex;
+}
+.photo {
+  width: 50%;
+  height: auto;
+}
 /* Title's centered */
 .postHeaderTitle,
 .subHeader,
@@ -122,9 +138,6 @@ a {
   color: white;
 }
 @media screen and (max-width: 600px) {
-  .container {
-    text-align: center;
-  }
   pre {
     font-size: 1.18rem;
   }

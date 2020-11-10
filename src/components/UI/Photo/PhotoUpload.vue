@@ -23,13 +23,15 @@ export default {
     async uploadImages(e) {
       let filesSelected = e.target.files;
       for (let i = 0; i < filesSelected.length; i++) {
+        //Targets each file
         let task = e.target.files[i];
-        const storageRef = storage.ref();
+        //References the storage
+        const storageRef = storage.ref("/images");
         const fileRef = storageRef.child(task.name);
-        // await fileRef.put(task);
+        await fileRef.put(task);
         const fileUrl = await fileRef.getDownloadURL();
         console.log(fileUrl);
-        // this.$emit("selectedImages", task);
+        this.$emit("selectedImages", fileUrl);
       }
     },
   },

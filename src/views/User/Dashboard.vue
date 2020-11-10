@@ -96,6 +96,9 @@ export default {
 }
 
 .cards {
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 20px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;

@@ -19,7 +19,7 @@ import {
 Vue.use(VueRouter);
 
 const user = store.state.auth.user;
-console.log(user)
+
 const routes = [{
     path: "/",
     name: "dashboard",

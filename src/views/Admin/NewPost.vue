@@ -114,6 +114,7 @@ export default {
           subtitle: this.subtitle,
           thumbnail: this.thumbnail,
           description: this.description,
+          pictures: this.pictures,
           link: this.link,
         })
         .then((docRef) => {

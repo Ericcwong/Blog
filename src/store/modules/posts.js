@@ -32,7 +32,7 @@ export default function usePosts() {
                         title: response.data().title,
                         subtitle: response.data().subtitle,
                         thumbnail: response.data().thumbnail,
-                        post_image: response.data().post_image,
+                        pictures: response.data().pictures,
                         link: response.data().link,
                         description: response.data().description,
                     };
