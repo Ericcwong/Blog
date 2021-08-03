@@ -14,11 +14,10 @@
         id="background"
       >
         <div class="content">
-          <h2 class="title">2020's Rollercoaster</h2>
+          <h2 class="title">Life's Rollercoaster</h2>
           <p>
-            2020 has been an eventful year with all its good and bad. With this
-            blog I hope to log all events that has or have been happening. Hope
-            to see you stick around.
+            Life has been an eventful with all its highs and lows. With this
+            blog I hope to log all events that has or have been happening.
           </p>
         </div>
         <div class="scrollDownIcon">
