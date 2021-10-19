@@ -25,7 +25,7 @@ import VideoBackground from 'vue-responsive-video-background-player'
 import {
   Plugin
 } from 'vue-responsive-video-background-player'
-
+import "animate.css"
 Vue.component('video-background', VideoBackground);
 Vue.use(Plugin);
 library.add(faEnvelope, faLock)
