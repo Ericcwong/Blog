@@ -9,7 +9,7 @@
       <b-navbar-nav class="ml-auto">
         <b-navbar-nav>
           <b-nav-item to="/">Home</b-nav-item>
-          <b-nav-item to="/blogs">Blogs</b-nav-item>
+          <!-- <b-nav-item to="/blogs">Blogs</b-nav-item> -->
           <b-nav-item v-if="userStatus" to="/admin/new-post"
             >New Post</b-nav-item
           >
