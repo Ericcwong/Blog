@@ -33,7 +33,8 @@ export default {};
 .footer {
   display: flex;
   justify-content: center;
-  background-color: #6c757d;
+  background-color: gray;
+  color: white;
 }
 .content {
   text-align: center;
@@ -48,6 +49,10 @@ export default {};
 }
 a {
   color: white;
+}
+a:hover {
+  text-decoration: none;
+  color: black;
 }
 @media screen and (max-width: 600px) {
   h1 {
