@@ -50,30 +50,40 @@ export default {
 
 <style scoped>
 .card {
-  width: 40%;
-  border: 1px solid darkgray;
-  margin: 0 auto;
-  margin-bottom: 20px;
+  display: grid;
+  /* grid-auto-columns: 1fr; */
+  /* grid-template-columns: 1fr; */
+  /* grid-template-rows: 1fr 1fr 1fr; */
+  gap: 0px 0px;
+  width: 25rem;
+
+  grid-template-areas:
+    "image"
+    "header"
+    "footer";
 }
 .card-header {
   text-align: center;
+  grid-area: header;
 }
 .card-img-top {
-  max-height: 100%;
   border-bottom: 1px solid lightgray;
+  object-fit: contain;
+  height: 16rem;
+  grid-area: image;
 }
-.card-body {
-  padding: 0;
+.card-subtitle {
+  grid-area: subtitle;
 }
 .card-footer {
   display: flex;
   width: 100%;
-  /* flex-wrap: wrap; */
   justify-content: space-between;
   padding-bottom: 10px;
+  grid-area: footer;
 }
 button {
-  max-width: 100%;
+  /* max-width: 100%; */
 }
 a {
   text-decoration: none;
