@@ -1,7 +1,7 @@
 <template>
   <div class="dashboard">
     <div class="dashboardTitle">
-      <video-background
+      <!-- <video-background
         src="/img/UI/waveBackground.mp4"
         :sources="[
           { src: '/img/UI/waveBackground.mp4', res: 900, autoplay: true },
@@ -12,7 +12,7 @@
           },
         ]"
         id="background"
-      >
+      > -->
         <div class="content">
           <h2 class="title">Life's Rollercoaster</h2>
           <p>
@@ -32,7 +32,7 @@
       -- v-for="Post of posts"                    
       -- posts is coming from setup()'s loadPost()                
       -- Post is whats being passed down as props-->
-    <div id="cards" class="cards">
+    <div class="cards">
       <Card
         v-for="post of state.posts"
         :key="post.id"
@@ -93,32 +93,22 @@ export default {
   margin: 0 auto;
   flex-wrap: wrap;
 }
-
 .cards {
-  width: 80%;
+  /* width: 80%;
   margin: 0 auto;
-  margin-top: 20px;
+  margin-top: 20px; */
   display: flex;
-  flex-direction: row;
+  /* flex-direction: row; */
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: center;
 }
-
 @media only screen and (max-width: 1200px) {
-  /* .content {
-    font-size: 5vw;
-  }
-  .title {
-    font-size: 8vw;
-  } */
   .cards {
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     flex-wrap: wrap;
   }
-  .card {
-    width: 100%;
-  }
+
   .content {
     width: 70%;
   }
