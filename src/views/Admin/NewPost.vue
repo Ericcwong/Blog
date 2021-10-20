@@ -96,7 +96,7 @@ export default {
   },
   data() {
     return {
-      title: null,
+      title: "",
       subtitle: null,
       thumbnail: "",
       description: null,
@@ -104,6 +104,23 @@ export default {
       pictures: [],
       error: null,
     };
+  },
+  // Saving typed data to local storage
+  mounted() {
+    if (localStorage.title) this.title = localStorage.title;
+    if (localStorage.subtitle) this.subtitle = localStorage.subtitle;
+    if (localStorage.description) this.description = localStorage.description;
+  },
+  watch: {
+    title(newTitle) {
+      localStorage.title = newTitle;
+    },
+    subtitle(newsubTitle) {
+      localStorage.subtitle = newsubTitle;
+    },
+    description(newDescription) {
+      localStorage.description = newDescription;
+    },
   },
   methods: {
     addPost() {
@@ -118,6 +135,9 @@ export default {
           link: this.link,
         })
         .then((docRef) => {
+          localStorage.title = "";
+          localStorage.subtitle = "";
+          localStorage.description = "";
           this.$router.push("/");
         })
         .catch((error) => {
@@ -125,6 +145,7 @@ export default {
           this.error = error;
         });
     },
+
     //onFileChange, createImage, and removeImage //
     //are for testing and seeing the thumbnail  //
     //image                                    //
