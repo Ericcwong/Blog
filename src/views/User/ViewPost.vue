@@ -17,6 +17,7 @@
     </div>
     <div class="postSubHeader">
       <h4>{{ subtitle }}</h4>
+      <p>Post Date: {{ date }}</p>
     </div>
 
     <div class="postDescription">
@@ -53,9 +54,7 @@ export default {
       date: null,
     };
   },
-  mounted() {
-    this.dateConvert();
-  },
+
   methods: {
     //fetchData is calling the specific post_id from firebase that is passed when clicked from dashboard page
     fetchData() {
@@ -73,10 +72,6 @@ export default {
             this.date = res.data().date;
           });
         });
-    },
-    dateConvert() {
-      this.date = new Date();
-      console.log(this.date);
     },
   },
 };
