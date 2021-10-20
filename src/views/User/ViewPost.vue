@@ -11,9 +11,6 @@
           alt=""
         />
       </div>
-      <b-button class="homeButton">
-        <router-link to="/">Back home</router-link>
-      </b-button>
     </div>
     <div class="postHeader">
       <h3 class="postHeaderTitle">{{ title }}</h3>
@@ -26,6 +23,9 @@
       <!-- <a :href="link">Link</a> -->
       <pre class="mt-3 mb-4">{{ description }}</pre>
       <!-- <img :src="pictures" alt /> -->
+      <b-button class="homeButton">
+        <router-link to="/">Back home</router-link>
+      </b-button>
     </div>
   </div>
 </template>
@@ -88,6 +88,7 @@ export default {
   height: 100%;
   width: 100vw;
   background: white;
+  margin-bottom: 1rem;
 }
 /* Images */
 .image {
@@ -120,15 +121,16 @@ h4 {
   justify-content: space-between;
 } */
 .postHeaderTitle {
-  font-size: 3rem;
+  font-size: 3.5rem;
 }
 /* Description */
 .postDescription {
   margin: 0 auto;
   width: 80%;
+  padding-bottom: 1rem;
 }
 pre {
-  font-size: 1.25rem;
+  font-size: 1rem;
   white-space: pre-wrap;
   word-break: break-word;
   overflow-x: hidden;
