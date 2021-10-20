@@ -133,6 +133,7 @@ export default {
           description: this.description,
           pictures: this.pictures,
           link: this.link,
+          date: this.postDate(),
         })
         .then((docRef) => {
           localStorage.title = "";
@@ -145,7 +146,16 @@ export default {
           this.error = error;
         });
     },
+    // Get post date
+    postDate() {
+      let today = new Date();
+      const day = String(today.getDate()).padStart(2, "0");
+      const month = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+      var year = today.getFullYear();
 
+      today = month + "/" + day + "/" + year;
+      return today;
+    },
     //onFileChange, createImage, and removeImage //
     //are for testing and seeing the thumbnail  //
     //image                                    //
