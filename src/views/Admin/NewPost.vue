@@ -15,9 +15,6 @@
 
           <div class="formButtons" v-else>
             <b-button @click="removeImage">Remove Thumbnail</b-button>
-            <b-button @click="addPost" class="btn btn-primary"
-              >Add Post!</b-button
-            >
           </div>
           <PhotoUpload @selectedImages="updateSelectedImages" />
         </div>
@@ -51,8 +48,17 @@
 
         <p style="color: red">{{ error }}</p>
       </form>
+      <b-button @click="addPost" class="btn btn-primary">Add Post!</b-button>
     </div>
-    <div class="preview" v-if="this.thumbnail !== ''">
+    <div
+      class="preview"
+      v-if="
+        this.thumbnail !== '' ||
+          this.title !== '' ||
+          this.subtitle !== '' ||
+          this.description !== ''
+      "
+    >
       <div class="previewCard">
         <h3>Card Preview</h3>
         <Card
@@ -63,7 +69,7 @@
           :link="this.link"
           :description="this.description"
         />
-        <div class="previewPost">
+        <!-- <div class="previewPost">
           <h3>Post Preview</h3>
           <ViewPostCard
             :title="this.title"
@@ -73,11 +79,11 @@
             :link="this.link"
             :description="this.description"
           />
-        </div>
+        </div> -->
       </div>
     </div>
     <div class="missingThumbnail" v-else>
-      <h1>Add a thumbnail to start the post!</h1>
+      <h1>Type something to start the post!</h1>
     </div>
   </div>
 </template>
@@ -122,6 +128,7 @@ export default {
       localStorage.description = newDescription;
     },
   },
+  //End of saving to local storage
   methods: {
     addPost() {
       db.collection("posts")
@@ -202,9 +209,9 @@ h3 {
   text-align: center;
 }
 .newPost {
-  display: inline-grid;
+  display: grid;
   margin-right: 30px;
-  /* flex-direction: inline; */
+  grid-auto-flow: row;
 }
 label {
   display: flex;
